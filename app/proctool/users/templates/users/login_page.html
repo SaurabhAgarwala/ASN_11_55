@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+<title>LogIn</title>
+
+{% block one %}
+<div>
+  <h2><u>Log In</u></h2>
+  <p>Enter your credentials:</p><br>
+  <div style="text-align: center; margin: 0 auto;">
+    <form action="{% url 'users:login' %}" method="POST" style="margin-left: 15%; margin-right: 15%; width: 70%;">
+    {% csrf_token %}
+    {% include 'bs4_form.html' with form=form %}
+    {% if request.GET.next %}
+        <input type="hidden" name="next" value="{{ request.GET.next }}">
+    {% endif %}
+    <input type="submit">
+    </form>
+    <p>Don't have an account? <a href="{% url 'users:signup' %}">Sign Up Here</p>
+  </div>
+</div>            
+{% endblock %}
+
