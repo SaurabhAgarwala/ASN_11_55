@@ -3,213 +3,57 @@
   <head>
     <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-firestore.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script type="text/javascript" src="webcamjs/webcam.min.js"></script>
-	<script>
-    var fileName = "";
-    var data_uri = "";
-    var str_counter_0 = 1;
-    var str_counter_1 = "Image_snapshot_"+str_counter_0;
-    var str_counter_2 = "audio_recording_"+str_counter_0;
-		 const firebaseConfig = {
-      apiKey: "AIzaSyBzzsBQLEskwb4ly6egRZgEctsjx90b1ig",
-      authDomain: "online-proctoring.firebaseapp.com",
-      projectId: "online-proctoring",
-      storageBucket: "online-proctoring.appspot.com",
-      messagingSenderId: "812057776891",
-      appId: "1:812057776891:web:66bca88a7867d94b2fd65e",
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    var firestore = firebase.firestore();
-	const snapshots = firestore.doc("snapshots/nizam");
-  
-  function myFunction() {
-    Webcam.set({
-      width: 320,
-      height: 240,
-      image_format: "jpeg",
-      jpeg_quality: 90,
-    });
-    Webcam.attach("#my_camera");
-
-    var intervalId = window.setInterval(function () {
-      take_snapshot(data_uri);
-    }, 10000);
-
-    function take_snapshot(data_uri) {
-      // take snapshot and get image data
-      Webcam.snap(function (data_uri, fileName) {
-        var current = new Date();
-        $name = "'candidate name'";
-        fileName = $name + " " + current.toLocaleTimeString() + " " + data_uri;
-        let btnstop = document.querySelector('#btnStop').click();
-        let btn = document.querySelector('#btnStart').click();  
-        
-        snapshots
-          .update({
-            [str_counter_1]: data_uri,
-          })
-          .then(function () {
-            str_counter_0++;
-            str_counter_1 = "Image_snapshot_"+str_counter_0;
-            console.log("Image saved successfully");
-            
-          })
-          .catch(function (error) {
-            console.log("Got an error: ", error);
-          });
-        retrieveImages(data_uri);
-      });
-    }
-
-    function retrieveImages(data_uri) {
-      
-      const docRef = firestore.collection("snapshots").doc("nizam");
-      docRef
-        .get()
-        .then(function (doc) {
-          if (doc.exists) {
-            //console.log("Document data:", doc.data().Image_snapshot_1);
-            for (let key in doc.data()) { 
-                if (doc.data().hasOwnProperty(key)) 
-                { 
-                    value = doc.data()[key]; 
-                    console.log(value);
-                    document.getElementById("results").innerHTML =
-                    "<img src='" +doc.data().Image_snapshot_1+"'/>";
-                } 
-            } 
-            // take snapshot and get image data
-            
-          } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-          }
-        })
-        .catch(function (error) {
-          console.log("Error getting document:", error);
-        });
-    }
-
-
-      let audioIN = { audio: true };
-      // audio is true, for recording
-
-      // Access the permission for use
-      // the microphone
-      navigator.mediaDevices
-        .getUserMedia(audioIN)
-
-        // 'then()' method returns a Promise
-        .then(function (mediaStreamObj) {
-          // Connect the media stream to the
-          // first audio element
-          let audio = document.querySelector("audio");
-          //returns the recorded audio via 'audio' tag
-
-          // 'srcObject' is a property which
-          // takes the media object
-          // This is supported in the newer browsers
-          if ("srcObject" in audio) {
-            audio.srcObject = mediaStreamObj;
-          } else {
-            // Old version
-            audio.src = window.URL.createObjectURL(mediaStreamObj);
-          }
-
-          // It will play the audio
-          audio.onloadedmetadata = function (ev) {
-            // Play the audio in the 2nd audio
-            // element what is being recorded
-            audio.play();
-          };
-
-          // Start record
-          let start = document.getElementById("btnStart");
-          let btn = document.querySelector('#btnStart').click(); 
-
-          // Stop record
-          let stop = document.getElementById("btnStop");
-
-          // 2nd audio tag for play the audio
-          let playAudio = document.getElementById("adioPlay");
-
-          // This is the main thing to recorde
-          // the audio 'MediaRecorder' API
-          let mediaRecorder = new MediaRecorder(mediaStreamObj);
-          // Pass the audio stream
-          mediaRecorder.start();
-			    document.getElementById('status').innerHTML = "Recording";
-          // Start event
-          start.addEventListener("click", function (ev) {
-			mediaRecorder.start();
-			document.getElementById('status').innerHTML = "Recording";
-            // console.log(mediaRecorder.state);
-          });
-
-          // Stop event
-          stop.addEventListener("click", function (ev) {
-			mediaRecorder.stop();
-			document.getElementById('status').innerHTML = "Stopped";
-            // console.log(mediaRecorder.state);
-          });
-
-          // If audio data available then push
-          // it to the chunk array
-          mediaRecorder.ondataavailable = function (ev) {
-            dataArray.push(ev.data);
-          };
-
-          // Chunk array to store the audio data
-          let dataArray = [];
-
-          // Convert the audio data in to blob
-          // after stopping the recording
-          mediaRecorder.onstop = function (ev) {
-            // blob of type mp3
-            let audioData = new Blob(dataArray, { type: "audio/mp3;" });
-
-            // After fill up the chunk
-            // array make it empty
-            dataArray = [];
-
-            // Creating audio url with reference
-            // of created blob named 'audioData'
-            let audioSrc = window.URL.createObjectURL(audioData);
-			var reader = new FileReader(); 
-    		reader.readAsDataURL(audioData); 
-    		reader.onloadend = function () { 
-    		var base64String = reader.result; 
-			snapshots
-          .update({
-            [str_counter_2]: base64String,
-          })
-          .then(function () {
-            str_counter_2 = "audio_recording_"+str_counter_0;
-            console.log("audio saved successfully");
-          })
-          .catch(function (error) {
-            console.log("Got an error: ", error);
-          });
-    		// Simply Print the Base64 Encoded String, 
-    		// without additional data: Attributes. 
-        } 
-            // Pass the audio url to the 2nd video tag
-            playAudio.src = audioSrc;
-          };
-        })
-
-        // If any error occurs then handles the error
-        .catch(function (err) {
-          console.log(err.name, err.message);
-        });
-
-        
-          
-        }
-    </script>
+	
   </head>
   <style>
+    body {
+	margin: 0;
+}
+
+#element {
+	margin: 40px auto 20px auto;
+	height: 200px;
+	width: 400px;
+	background-color: #e9e9e9;
+	font-size: 20px;
+	padding: 40px 0 0 0;
+	text-align: center;
+	box-sizing: border-box;
+}
+
+#go-button {
+	width: 200px;
+	display: block;
+	margin: 50px auto 0 auto;
+}
+
+/* webkit requires explicit width, height = 100% of sceeen */
+/* webkit also takes margin into account in full screen also - so margin should be removed (otherwise black areas will be seen) */
+#element:-webkit-full-screen {
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	margin: 0;
+}
+
+#element:-moz-full-screen {
+	background-color: white;
+	margin: 0;
+}
+
+#element:-ms-fullscreen {
+	background-color: white;
+	margin: 0;
+}
+
+/* W3C proposal that will eventually come in all browsers */
+#element:fullscreen { 
+	background-color: white;
+	margin: 0;
+}
+
     #my_camera {
       width: 320px;
       height: 240px;
@@ -217,6 +61,14 @@
     }
   </style>
   <body onload="myFunction()">
+    <center>
+    <h3> Full Screen Mode</h3>
+    <div id="element">
+      <span>Full Screen Mode Disabled</span>
+      <button id="go-button">Enable Full Screen</button>
+
+<p id=my_msg>Wait for Status here</p>
+    </div>
     <h3>Webcam Camera</h3>
     <div id="my_camera"></div>
     <h3>Camera snapshot</h3>
@@ -225,13 +77,14 @@
     <div id="file"></div>
     <header>
       <h1>voice recorder</h1>
+      <h1 id="status">Status</h1>
     </header>
     <!--button for 'start recording'-->
     <p>
       <button id="btnStart">START RECORDING</button>
 
 	  <button id="btnStop">STOP RECORDING</button>
-	  <h1 id="status">Status</h1>
+	  
       <!--button for 'stop recording'-->
     </p>
 
@@ -242,5 +95,307 @@
 
     <!--for play the audio-->
     <audio id="adioPlay" controls></audio>
+  </center>
   </body>
+
+  <script>
+
+    function display_c(){
+    
+    }
+    
+        var fileName = "";
+        var data_uri = "";
+        var str_counter_0 = 1;
+        var str_counter_1 = "Image_snapshot_"+str_counter_0;
+        var str_counter_2 = "audio_recording_"+str_counter_0;
+         const firebaseConfig = {
+          apiKey: "AIzaSyBzzsBQLEskwb4ly6egRZgEctsjx90b1ig",
+          authDomain: "online-proctoring.firebaseapp.com",
+          projectId: "online-proctoring",
+          storageBucket: "online-proctoring.appspot.com",
+          messagingSenderId: "812057776891",
+          appId: "1:812057776891:web:66bca88a7867d94b2fd65e",
+        };
+    
+        firebase.initializeApp(firebaseConfig);
+        var firestore = firebase.firestore();
+      const snapshots = firestore.doc("snapshots/nizam");
+
+      function reload(){
+        var refresh=1000; // Refresh rate in milli seconds
+    mytime=setTimeout('display_msg()',refresh)
+         var container = document.getElementById("my_msg");
+         var content = container.innerHTML;
+         container.innerHTML= content; 
+
+        //this line is to watch the result in console , you can remove it later	
+          console.log("Refreshed"); 
+      }
+      
+      function myFunction() {
+        reload();
+        /* Get into full screen */
+    function GoInFullscreen(element) {
+      if(element.requestFullscreen){
+        element.requestFullscreen();
+      }else if(element.mozRequestFullScreen)
+        element.mozRequestFullScreen();
+      else if(element.webkitRequestFullscreen)
+        element.webkitRequestFullscreen();
+      else if(element.msRequestFullscreen)
+        element.msRequestFullscreen();
+    }
+    
+    /* Get out of full screen */
+    function GoOutFullscreen() {
+      if(document.exitFullscreen){
+        document.exitFullscreen();}
+      else if(document.mozCancelFullScreen)
+        document.mozCancelFullScreen();
+      else if(document.webkitExitFullscreen)
+        document.webkitExitFullscreen();
+      else if(document.msExitFullscreen)
+        document.msExitFullscreen();
+    }
+    
+    /* Is currently in full screen or not */
+    function IsFullScreenCurrently() {
+      var full_screen_element = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement || null;
+      
+      // If no element is in full-screen
+      if(full_screen_element === null){
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
+    
+    $("#go-button").on('click', function() {
+      if(IsFullScreenCurrently())
+        GoOutFullscreen();
+      else
+        GoInFullscreen($("#element").get(0));
+    });
+    
+    $(document).on('fullscreenchange webkitfullscreenchange mozfullscreenchange MSFullscreenChange', function() {
+      if(IsFullScreenCurrently()) {
+        $("#element span").text('Full Screen Mode Enabled');
+        $("#go-button").text('Disable FullScreen');
+      }
+      else {
+        setTimeout(alert("Please return to the exam in fullscreen mode or you will be disqualified for this exam "), 100);
+        $("#element span").text('Full Screen Mode Disabled');
+        $("#go-button").text('Enable Full Screen');
+      }
+    });
+    
+    
+        Webcam.set({
+          width: 320,
+          height: 240,
+          image_format: "jpeg",
+          jpeg_quality: 90,
+        });
+        Webcam.attach("#my_camera");
+    
+        var intervalId = window.setInterval(function () {
+          take_snapshot(data_uri);
+        }, 10000);
+    
+        function take_snapshot(data_uri) {
+          // take snapshot and get image data
+          Webcam.snap(function (data_uri, fileName) {
+            var current = new Date();
+            $name = "'candidate name'";
+            fileName = $name + " " + current.toLocaleTimeString() + " " + data_uri;
+            let btnstop = document.querySelector('#btnStop').click();
+            let btn = document.querySelector('#btnStart').click();
+            snapshots
+              .update({
+                [str_counter_1]: data_uri,
+              })
+              .then(function () {
+                str_counter_0++;
+                str_counter_1 = "Image_snapshot_"+str_counter_0;
+                console.log("Image saved successfully");
+                
+              })
+              .catch(function (error) {
+                console.log("Got an error: ", error);
+              });
+            retrieveImages(data_uri);
+          });
+        }
+    
+        function retrieveImages(data_uri) {
+          
+          const docRef = firestore.collection("snapshots").doc("nizam");
+          docRef
+            .get()
+            .then(function (doc) {
+              if (doc.exists) {
+                //console.log("Document data:", doc.data().Image_snapshot_1);
+                for (let key in doc.data()) { 
+                    if (doc.data().hasOwnProperty(key)) 
+                    { 
+                        value = doc.data()[key]; 
+                        console.log(value);
+                        document.getElementById("results").innerHTML =
+                        "<img src='" +doc.data().Image_snapshot_1+"'/>";
+                    } 
+                } 
+                // take snapshot and get image data
+                
+              } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+              }
+            })
+            .catch(function (error) {
+              console.log("Error getting document:", error);
+            });
+        }
+    
+    
+          let audioIN = { audio: true };
+          // audio is true, for recording
+    
+          // Access the permission for use
+          // the microphone
+          navigator.mediaDevices
+            .getUserMedia(audioIN)
+    
+            // 'then()' method returns a Promise
+            .then(function (mediaStreamObj) {
+              // Connect the media stream to the
+              // first audio element
+              let audio = document.querySelector("audio");
+              //returns the recorded audio via 'audio' tag
+    
+              // 'srcObject' is a property which
+              // takes the media object
+              // This is supported in the newer browsers
+              if ("srcObject" in audio) {
+                audio.srcObject = mediaStreamObj;
+              } else {
+                // Old version
+                audio.src = window.URL.createObjectURL(mediaStreamObj);
+              }
+    
+              // It will play the audio
+              audio.onloadedmetadata = function (ev) {
+                // Play the audio in the 2nd audio
+                // element what is being recorded
+                audio.play();
+              };
+    
+              // Start record
+              let start = document.getElementById("btnStart");
+              let btn = document.querySelector('#btnStart').click(); 
+    
+              // Stop record
+              let stop = document.getElementById("btnStop");
+    
+              // 2nd audio tag for play the audio
+              let playAudio = document.getElementById("adioPlay");
+    
+              // This is the main thing to recorde
+              // the audio 'MediaRecorder' API
+              let mediaRecorder = new MediaRecorder(mediaStreamObj);
+              // Pass the audio stream
+              mediaRecorder.start();
+              document.getElementById('status').innerHTML = "Recording";
+              // Start event
+              start.addEventListener("click", function (ev) {
+          mediaRecorder.start();
+          document.getElementById('status').innerHTML = "Recording";
+                // console.log(mediaRecorder.state);
+              });
+    
+              // Stop event
+              stop.addEventListener("click", function (ev) {
+          mediaRecorder.stop();
+          document.getElementById('status').innerHTML = "Stopped";
+                // console.log(mediaRecorder.state);
+              });
+    
+              // If audio data available then push
+              // it to the chunk array
+              mediaRecorder.ondataavailable = function (ev) {
+                dataArray.push(ev.data);
+              };
+    
+              // Chunk array to store the audio data
+              let dataArray = [];
+    
+              // Convert the audio data in to blob
+              // after stopping the recording
+              mediaRecorder.onstop = function (ev) {
+                // blob of type mp3
+                let audioData = new Blob(dataArray, { type: "audio/mp3;" });
+    
+                // After fill up the chunk
+                // array make it empty
+                dataArray = [];
+    
+                // Creating audio url with reference
+                // of created blob named 'audioData'
+                let audioSrc = window.URL.createObjectURL(audioData);
+          var reader = new FileReader(); 
+            reader.readAsDataURL(audioData); 
+            reader.onloadend = function () { 
+            var base64String = reader.result; 
+          snapshots
+              .update({
+                [str_counter_2]: base64String,
+              })
+              .then(function () {
+                str_counter_2 = "audio_recording_"+str_counter_0;
+                console.log("audio saved successfully");
+              })
+              .catch(function (error) {
+                console.log("Got an error: ", error);
+              });
+            // Simply Print the Base64 Encoded String, 
+            // without additional data: Attributes. 
+            } 
+                // Pass the audio url to the 2nd video tag
+                playAudio.src = audioSrc;
+              };
+            })
+    
+            // If any error occurs then handles the error
+            .catch(function (err) {
+              console.log(err.name, err.message);
+            });
+    
+            
+              
+            }
+       
+
+////////////////////////////--detect window is not focused
+function display_msg() {
+if ( document.hasFocus() ) {
+document.getElementById('my_msg').style.backgroundColor = "#00f000";
+document.getElementById('my_msg').innerHTML = "This web page is in Focus ";
+}
+else
+{
+document.getElementById('my_msg').style.backgroundColor = "#f07814";
+document.getElementById('my_msg').innerHTML = "This web page is NOT in Focus ";
+}
+reload();
+}
+window.onload=myFunction;
+//////////////
+</script>
+
+<body >
+<br>
+
+
+</body>
 </html>
