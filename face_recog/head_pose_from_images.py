@@ -9,12 +9,6 @@ from draw_face import draw
 
 import reference_world as world
 
-"""
-Kalo misalkan posisi kepalanya
-ngga straight anggep terindikasi
-nyontek jika lebih dari 5 detik.
-
-"""
 
 PREDICTOR_PATH = os.path.join('models','shape_predictor_68_face_landmarks.dat')
 
@@ -39,6 +33,7 @@ def main(image):
         faces = detector(cv.cvtColor(img, cv.COLOR_BGR2RGB), 0)
 
         face3Dmodel = world.ref3DModel()
+        count = 0
         
         for face in faces :
             newImg= cv.cvtColor(img, cv.COLOR_BGR2RGB)
@@ -91,9 +86,15 @@ def main(image):
             if angles[1] < -15 :
                 gaze += "Left"
                 print('Please Look forward, do not cheating')
+                count+=1
+                if count >=5 :
+                    sys.exit()
             elif angles[1] > 15:
                 gaze+= "Right"
                 print('Please Look Forward, do not cheating')
+                count+= 1
+                if count >= 5:
+                    sys.exit()
             else :
                 gaze += "Forward"
                 isCheat = False
