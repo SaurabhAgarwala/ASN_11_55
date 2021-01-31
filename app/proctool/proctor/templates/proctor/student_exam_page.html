@@ -1,0 +1,1416 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+
+{% block one %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Student Exam Page</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link href="{% static  'resources/css/axure_rp_page.css' %}" type="text/css" rel="stylesheet"/>
+    <link href="{% static  'data/styles.css' %}" type="text/css" rel="stylesheet"/>
+    <link href="{% static  'files/student_exam_page/styles.css' %}" type="text/css" rel="stylesheet"/>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-firestore.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="{% static  'resources/scripts/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/axQuery.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/globals.js' %}"></script>
+    <script src="{% static  'resources/scripts/axutils.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/annotation.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/axQuery.std.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/doc.js' %}"></script>
+    <script src="{% static  'resources/scripts/messagecenter.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/events.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/recording.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/action.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/expr.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/geometry.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/flyout.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/model.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/repeater.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/sto.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/utils.temp.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/variables.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/drag.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/move.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/visibility.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/style.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/adaptive.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/tree.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/init.temp.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/legacy.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/viewer.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/math.js' %}"></script>
+    <script src="{% static  'resources/scripts/axure/jquery.nicescroll.min.js' %}"></script>
+    <script src="{% static  'data/document.js' %}"></script>
+    <script src="{% static  'files/student_exam_page/data.js' %}"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+
+      var fileName = "";
+        var data_uri = "";
+        var str_counter_0 = 1;
+        var str_counter_1 = "Image_snapshot_"+str_counter_0;
+        var str_counter_2 = "audio_recording_"+str_counter_0;
+         const firebaseConfig = {
+          apiKey: "AIzaSyBzzsBQLEskwb4ly6egRZgEctsjx90b1ig",
+          authDomain: "online-proctoring.firebaseapp.com",
+          projectId: "online-proctoring",
+          storageBucket: "online-proctoring.appspot.com",
+          messagingSenderId: "812057776891",
+          appId: "1:812057776891:web:66bca88a7867d94b2fd65e",
+        };
+    
+        firebase.initializeApp(firebaseConfig);
+        var firestore = firebase.firestore();
+      const snapshots = firestore.doc("snapshots/nizam");
+
+      function reload(){
+        var refresh=1000; // Refresh rate in milli seconds
+    mytime=setTimeout('display_msg()',refresh)
+         var container = document.getElementById("my_msg");
+         var content = container.innerHTML;
+         container.innerHTML= content; 
+
+        //this line is to watch the result in console , you can remove it later	
+          console.log("Refreshed"); 
+      }
+
+      function myFunction() {
+        reload();
+        /* Get into full screen */
+    function GoInFullscreen(element) {
+      if(element.requestFullscreen){
+        element.requestFullscreen();
+      }else if(element.mozRequestFullScreen)
+        element.mozRequestFullScreen();
+      else if(element.webkitRequestFullscreen)
+        element.webkitRequestFullscreen();
+      else if(element.msRequestFullscreen)
+        element.msRequestFullscreen();
+    }
+    
+    /* Get out of full screen */
+    function GoOutFullscreen() {
+      if(document.exitFullscreen){
+        document.exitFullscreen();}
+      else if(document.mozCancelFullScreen)
+        document.mozCancelFullScreen();
+      else if(document.webkitExitFullscreen)
+        document.webkitExitFullscreen();
+      else if(document.msExitFullscreen)
+        document.msExitFullscreen();
+    }
+    
+    /* Is currently in full screen or not */
+    function IsFullScreenCurrently() {
+      var full_screen_element = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement || null;
+      
+      // If no element is in full-screen
+      if(full_screen_element === null){
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
+    
+    $("#go-button").on('click', function() {
+      if(IsFullScreenCurrently())
+        GoOutFullscreen();
+      else
+        GoInFullscreen($("#element").get(0));
+    });
+    
+    $(document).on('fullscreenchange webkitfullscreenchange mozfullscreenchange MSFullscreenChange', function() {
+      if(IsFullScreenCurrently()) {
+        $("#element span").text('Full Screen Mode Enabled');
+        $("#go-button").text('Disable FullScreen');
+      }
+      else {
+        setTimeout(alert("Please return to the exam in fullscreen mode or you will be disqualified for this exam "), 100);
+        $("#element span").text('Full Screen Mode Disabled');
+        $("#go-button").text('Enable Full Screen');
+      }
+    });
+    
+    
+        Webcam.set({
+          width: 320,
+          height: 240,
+          image_format: "jpeg",
+          jpeg_quality: 90,
+        });
+        Webcam.attach("#my_camera");
+    
+        var intervalId = window.setInterval(function () {
+          take_snapshot(data_uri);
+        }, 10000);
+    
+        function take_snapshot(data_uri) {
+          // take snapshot and get image data
+          Webcam.snap(function (data_uri, fileName) {
+            var current = new Date();
+            $name = "'candidate name'";
+            fileName = $name + " " + current.toLocaleTimeString() + " " + data_uri;
+            let btnstop = document.querySelector('#btnStop').click();
+            let btn = document.querySelector('#btnStart').click();
+            snapshots
+              .update({
+                [str_counter_1]: data_uri,
+              })
+              .then(function () {
+                str_counter_0++;
+                str_counter_1 = "Image_snapshot_"+str_counter_0;
+                console.log("Image saved successfully");
+                
+              })
+              .catch(function (error) {
+                console.log("Got an error: ", error);
+              });
+            retrieveImages(data_uri);
+          });
+        }
+    
+        function retrieveImages(data_uri) {
+          
+          const docRef = firestore.collection("snapshots").doc("nizam");
+          docRef
+            .get()
+            .then(function (doc) {
+              if (doc.exists) {
+                //console.log("Document data:", doc.data().Image_snapshot_1);
+                for (let key in doc.data()) { 
+                    if (doc.data().hasOwnProperty(key)) 
+                    { 
+                        value = doc.data()[key]; 
+                        console.log(value);
+                        document.getElementById("results").innerHTML =
+                        "<img src='" +doc.data().Image_snapshot_1+"'/>";
+                    } 
+                } 
+                // take snapshot and get image data
+                
+              } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+              }
+            })
+            .catch(function (error) {
+              console.log("Error getting document:", error);
+            });
+        }
+    
+    
+          let audioIN = { audio: true };
+          // audio is true, for recording
+    
+          // Access the permission for use
+          // the microphone
+          navigator.mediaDevices
+            .getUserMedia(audioIN)
+    
+            // 'then()' method returns a Promise
+            .then(function (mediaStreamObj) {
+              // Connect the media stream to the
+              // first audio element
+              let audio = document.querySelector("audio");
+              //returns the recorded audio via 'audio' tag
+    
+              // 'srcObject' is a property which
+              // takes the media object
+              // This is supported in the newer browsers
+              if ("srcObject" in audio) {
+                audio.srcObject = mediaStreamObj;
+              } else {
+                // Old version
+                audio.src = window.URL.createObjectURL(mediaStreamObj);
+              }
+    
+              // It will play the audio
+              audio.onloadedmetadata = function (ev) {
+                // Play the audio in the 2nd audio
+                // element what is being recorded
+                audio.play();
+              };
+    
+              // Start record
+              let start = document.getElementById("btnStart");
+              let btn = document.querySelector('#btnStart').click(); 
+    
+              // Stop record
+              let stop = document.getElementById("btnStop");
+    
+              // 2nd audio tag for play the audio
+              let playAudio = document.getElementById("adioPlay");
+    
+              // This is the main thing to recorde
+              // the audio 'MediaRecorder' API
+              let mediaRecorder = new MediaRecorder(mediaStreamObj);
+              // Pass the audio stream
+              mediaRecorder.start();
+              document.getElementById('status').innerHTML = "Recording";
+              // Start event
+              start.addEventListener("click", function (ev) {
+          mediaRecorder.start();
+          document.getElementById('status').innerHTML = "Recording";
+                // console.log(mediaRecorder.state);
+              });
+    
+              // Stop event
+              stop.addEventListener("click", function (ev) {
+          mediaRecorder.stop();
+          document.getElementById('status').innerHTML = "Stopped";
+                // console.log(mediaRecorder.state);
+              });
+    
+              // If audio data available then push
+              // it to the chunk array
+              mediaRecorder.ondataavailable = function (ev) {
+                dataArray.push(ev.data);
+              };
+    
+              // Chunk array to store the audio data
+              let dataArray = [];
+    
+              // Convert the audio data in to blob
+              // after stopping the recording
+              mediaRecorder.onstop = function (ev) {
+                // blob of type mp3
+                let audioData = new Blob(dataArray, { type: "audio/mp3;" });
+    
+                // After fill up the chunk
+                // array make it empty
+                dataArray = [];
+    
+                // Creating audio url with reference
+                // of created blob named 'audioData'
+                let audioSrc = window.URL.createObjectURL(audioData);
+          var reader = new FileReader(); 
+            reader.readAsDataURL(audioData); 
+            reader.onloadend = function () { 
+            var base64String = reader.result; 
+          snapshots
+              .update({
+                [str_counter_2]: base64String,
+              })
+              .then(function () {
+                str_counter_2 = "audio_recording_"+str_counter_0;
+                console.log("audio saved successfully");
+              })
+              .catch(function (error) {
+                console.log("Got an error: ", error);
+              });
+            // Simply Print the Base64 Encoded String, 
+            // without additional data: Attributes. 
+            } 
+                // Pass the audio url to the 2nd video tag
+                playAudio.src = audioSrc;
+              };
+            })
+    
+            // If any error occurs then handles the error
+            .catch(function (err) {
+              console.log(err.name, err.message);
+            });
+            }
+    </script>
+  </head>
+  <body onload="myFunction()">
+    <div id="base" class="">
+
+      <!-- Web background (Rectangle) -->
+      <div id="u0" class="ax_default shape1" data-label="Web background">
+        <div id="u0_div" class=""></div>
+        <div id="u0_text" class="text ">
+          <p><span>`</span></p>
+        </div>
+      </div>
+
+      <!-- Page (Group) -->
+      <div id="u1" class="ax_default" data-label="Page" data-left="0" data-top="0" data-width="1429" data-height="955">
+
+        <!-- Chat Background (Rectangle) -->
+        <div id="u2" class="ax_default shape1" data-label="Chat Background">
+          <div id="u2_div" class=""></div>
+          <div id="u2_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Exam (Group) -->
+        <div id="u3" class="ax_default" data-label="Exam" data-left="159" data-top="110" data-width="1239" data-height="799">
+
+          <!-- Question No. icon roll bar (Group) -->
+          <div id="u4" class="ax_default" data-label="Question No. icon roll bar" data-left="159" data-top="110" data-width="81" data-height="799">
+
+            <!-- Question No. icon roll bgm (Rectangle) -->
+            <div id="u5" class="ax_default box_1" data-label="Question No. icon roll bgm">
+              <div id="u5_div" class=""></div>
+              <div id="u5_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+              </div>
+            </div>
+
+            <!-- Question No. icon roll (Repeater) -->
+            <div id="u6" class="ax_default" data-label="Question No. icon roll">
+              <script id="u6_script" type="axure-repeater-template" data-label="Question No. icon roll">
+
+                <!-- Question No. icon (Rectangle) -->
+                <div id="u7" class="ax_default button u7" data-label="Question No. icon">
+                  <div id="u7_div" class="u7_div"></div>
+                  <div id="u7_text" class="text u7_text">
+                    <p><span>1</span></p>
+                  </div>
+                </div>
+              </script>
+              <div id="u6-1" class="preeval" style="width: 61px; height: 59px;">
+
+                <!-- Question No. icon (Rectangle) -->
+                <div id="u7-1" class="ax_default button u7" data-label="Question No. icon" style="width: 61px; height: 59px; left: 0px; top: 0px;visibility: inherit">
+                  <div id="u7-1_div" class="u7_div" style="width: 61px; height: 59px;visibility: inherit"></div>
+                  <div id="u7-1_text" class="text u7_text" style="visibility: inherit">
+                  </div>
+                </div>
+              </div>
+              <div id="u6-2" class="preeval" style="width: 61px; height: 59px;">
+
+                <!-- Question No. icon (Rectangle) -->
+                <div id="u7-2" class="ax_default button u7" data-label="Question No. icon" style="width: 61px; height: 59px; left: 0px; top: 0px;visibility: inherit">
+                  <div id="u7-2_div" class="u7_div" style="width: 61px; height: 59px;visibility: inherit"></div>
+                  <div id="u7-2_text" class="text u7_text" style="visibility: inherit">
+                  </div>
+                </div>
+              </div>
+              <div id="u6-3" class="preeval" style="width: 61px; height: 59px;">
+
+                <!-- Question No. icon (Rectangle) -->
+                <div id="u7-3" class="ax_default button u7" data-label="Question No. icon" style="width: 61px; height: 59px; left: 0px; top: 0px;visibility: inherit">
+                  <div id="u7-3_div" class="u7_div" style="width: 61px; height: 59px;visibility: inherit"></div>
+                  <div id="u7-3_text" class="text u7_text" style="visibility: inherit">
+                  </div>
+                </div>
+              </div>
+              <div id="u6-4" class="preeval" style="width: 61px; height: 59px;">
+
+                <!-- Question No. icon (Rectangle) -->
+                <div id="u7-4" class="ax_default button u7" data-label="Question No. icon" style="width: 61px; height: 59px; left: 0px; top: 0px;visibility: inherit">
+                  <div id="u7-4_div" class="u7_div" style="width: 61px; height: 59px;visibility: inherit"></div>
+                  <div id="u7-4_text" class="text u7_text" style="visibility: inherit">
+                    <p><span>4</span></p>
+                  </div>
+                </div>
+              </div>
+              <div id="u6-5" class="preeval" style="width: 61px; height: 59px;">
+
+                <!-- Question No. icon (Rectangle) -->
+                <div id="u7-5" class="ax_default button u7" data-label="Question No. icon" style="width: 61px; height: 59px; left: 0px; top: 0px;visibility: inherit">
+                  <div id="u7-5_div" class="u7_div" style="width: 61px; height: 59px;visibility: inherit"></div>
+                  <div id="u7-5_text" class="text u7_text" style="visibility: inherit">
+                    <p><span>5</span></p>
+                  </div>
+                </div>
+              </div>
+              <div id="u6-6" class="preeval" style="width: 61px; height: 59px;">
+
+                <!-- Question No. icon (Rectangle) -->
+                <div id="u7-6" class="ax_default button u7" data-label="Question No. icon" style="width: 61px; height: 59px; left: 0px; top: 0px;visibility: inherit">
+                  <div id="u7-6_div" class="u7_div" style="width: 61px; height: 59px;visibility: inherit"></div>
+                  <div id="u7-6_text" class="text u7_text" style="visibility: inherit">
+                    <p><span>6</span></p>
+                  </div>
+                </div>
+              </div>
+              <div id="u6-7" class="preeval" style="width: 61px; height: 59px;">
+
+                <!-- Question No. icon (Rectangle) -->
+                <div id="u7-7" class="ax_default button u7" data-label="Question No. icon" style="width: 61px; height: 59px; left: 0px; top: 0px;visibility: inherit">
+                  <div id="u7-7_div" class="u7_div" style="width: 61px; height: 59px;visibility: inherit"></div>
+                  <div id="u7-7_text" class="text u7_text" style="visibility: inherit">
+                    <p><span>7</span></p>
+                  </div>
+                </div>
+              </div>
+              <div id="u6-8" class="preeval" style="width: 61px; height: 59px;">
+
+                <!-- Question No. icon (Rectangle) -->
+                <div id="u7-8" class="ax_default button u7" data-label="Question No. icon" style="width: 61px; height: 59px; left: 0px; top: 0px;visibility: inherit">
+                  <div id="u7-8_div" class="u7_div" style="width: 61px; height: 59px;visibility: inherit"></div>
+                  <div id="u7-8_text" class="text u7_text" style="visibility: inherit">
+                    <p><span>8</span></p>
+                  </div>
+                </div>
+              </div>
+              <div id="u6-9" class="preeval" style="width: 61px; height: 59px;">
+
+                <!-- Question No. icon (Rectangle) -->
+                <div id="u7-9" class="ax_default button u7" data-label="Question No. icon" style="width: 61px; height: 59px; left: 0px; top: 0px;visibility: inherit">
+                  <div id="u7-9_div" class="u7_div" style="width: 61px; height: 59px;visibility: inherit"></div>
+                  <div id="u7-9_text" class="text u7_text" style="visibility: inherit">
+                    <p><span>9</span></p>
+                  </div>
+                </div>
+              </div>
+              <div id="u6-10" class="preeval" style="width: 61px; height: 59px;">
+
+                <!-- Question No. icon (Rectangle) -->
+                <div id="u7-10" class="ax_default button u7" data-label="Question No. icon" style="width: 61px; height: 59px; left: 0px; top: 0px;visibility: inherit">
+                  <div id="u7-10_div" class="u7_div" style="width: 61px; height: 59px;visibility: inherit"></div>
+                  <div id="u7-10_text" class="text u7_text" style="visibility: inherit">
+                    <p><span>10</span></p>
+                  </div>
+                </div>
+              </div>
+              <div id="u6-11" class="preeval" style="width: 61px; height: 59px;">
+
+                <!-- Question No. icon (Rectangle) -->
+                <div id="u7-11" class="ax_default button u7" data-label="Question No. icon" style="width: 61px; height: 59px; left: 0px; top: 0px;visibility: inherit">
+                  <div id="u7-11_div" class="u7_div" style="width: 61px; height: 59px;visibility: inherit"></div>
+                  <div id="u7-11_text" class="text u7_text" style="visibility: inherit">
+                    <p><span>11</span></p>
+                  </div>
+                </div>
+              </div>
+              <div id="u6-12" class="preeval" style="width: 61px; height: 59px;">
+
+                <!-- Question No. icon (Rectangle) -->
+                <div id="u7-12" class="ax_default button u7" data-label="Question No. icon" style="width: 61px; height: 59px; left: 0px; top: 0px;visibility: inherit">
+                  <div id="u7-12_div" class="u7_div" style="width: 61px; height: 59px;visibility: inherit"></div>
+                  <div id="u7-12_text" class="text u7_text" style="visibility: inherit">
+                    <p><span>12</span></p>
+                  </div>
+                </div>
+              </div>
+              <div id="u6-13" class="preeval" style="width: 61px; height: 59px;">
+
+                <!-- Question No. icon (Rectangle) -->
+                <div id="u7-13" class="ax_default button u7" data-label="Question No. icon" style="width: 61px; height: 59px; left: 0px; top: 0px;visibility: inherit">
+                  <div id="u7-13_div" class="u7_div" style="width: 61px; height: 59px;visibility: inherit"></div>
+                  <div id="u7-13_text" class="text u7_text" style="visibility: inherit">
+                    <p><span>13</span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question Roll (Repeater) -->
+          <div id="u8" class="ax_default" data-label="Question Roll">
+            <script id="u8_script" type="axure-repeater-template" data-label="Question Roll">
+
+              <!-- Question Background (Rectangle) -->
+              <div id="u9" class="ax_default box_1 u9" data-label="Question Background">
+                <div id="u9_div" class="u9_div"></div>
+                <div id="u9_text" class="text u9_text" style="display:none; visibility: hidden">
+                  <p></p>
+                </div>
+              </div>
+
+              <!-- Question icon (Rectangle) -->
+              <div id="u10" class="ax_default box_1 u10" data-label="Question icon">
+                <div id="u10_div" class="u10_div"></div>
+                <div id="u10_text" class="text u10_text" style="display:none; visibility: hidden">
+                  <p></p>
+                </div>
+              </div>
+
+              <!-- Question (Rectangle) -->
+              <div id="u11" class="ax_default paragraph u11" data-label="Question">
+                <div id="u11_div" class="u11_div"></div>
+                <div id="u11_text" class="text u11_text">
+                  <p><span>When is the date of 2021 ASEAN Hackathon?</span></p>
+                </div>
+              </div>
+
+              <!-- Question No. (Rectangle) -->
+              <div id="u12" class="ax_default heading_2 u12" data-label="Question No.">
+                <div id="u12_div" class="u12_div"></div>
+                <div id="u12_text" class="text u12_text">
+                  <p><span>1.Multiple Choice (1 mark)</span></p>
+                </div>
+              </div>
+
+              <!-- A (Rectangle) -->
+              <div id="u13" class="ax_default label u13" data-label="A">
+                <div id="u13_div" class="u13_div"></div>
+                <div id="u13_text" class="text u13_text">
+                  <p><span>A. Feburary</span></p>
+                </div>
+              </div>
+
+              <!-- B (Rectangle) -->
+              <div id="u14" class="ax_default label u14" data-label="B">
+                <div id="u14_div" class="u14_div"></div>
+                <div id="u14_text" class="text u14_text">
+                  <p><span>B. January</span></p>
+                </div>
+              </div>
+
+              <!-- C (Rectangle) -->
+              <div id="u15" class="ax_default label u15" data-label="C">
+                <div id="u15_div" class="u15_div"></div>
+                <div id="u15_text" class="text u15_text">
+                  <p><span>C. November&nbsp; </span></p>
+                </div>
+              </div>
+
+              <!-- D (Rectangle) -->
+              <div id="u16" class="ax_default label u16" data-label="D">
+                <div id="u16_div" class="u16_div"></div>
+                <div id="u16_text" class="text u16_text">
+                  <p><span>D. December</span></p>
+                </div>
+              </div>
+            </script>
+            <div id="u8-1" class="preeval" style="width: 820px; height: 262px;">
+
+              <!-- Question Background (Rectangle) -->
+              <div id="u9-1" class="ax_default box_1 u9" data-label="Question Background" style="width: 820px; height: 262px; left: 0px; top: 0px;visibility: inherit">
+                <div id="u9-1_div" class="u9_div" style="width: 820px; height: 262px;visibility: inherit"></div>
+                <div id="u9-1_text" class="text u9_text" style="visibility: inherit">
+                  <p><span>1</span></p>
+                </div>
+              </div>
+
+              <!-- Question icon (Rectangle) -->
+              <div id="u10-1" class="ax_default box_1 u10" data-label="Question icon" style="width: 12px; height: 32px; left: 17px; top: 20px;visibility: inherit">
+                <div id="u10-1_div" class="u10_div" style="width: 12px; height: 32px;visibility: inherit"></div>
+                <div id="u10-1_text" class="text u10_text" style="display:none; visibility: hidden">
+                  <p></p>
+                </div>
+              </div>
+
+              <!-- Question (Rectangle) -->
+              <div id="u11-1" class="ax_default paragraph u11" data-label="Question" style="width: 530px; height: 26px; left: 44px; top: 60px;visibility: inherit">
+                <div id="u11-1_div" class="u11_div" style="width: 530px; height: 26px;visibility: inherit"></div>
+                <div id="u11-1_text" class="text u11_text" style="visibility: inherit">
+                  <p><span>When is the date of 2021 ASEAN Hackathon?</span></p>
+                </div>
+              </div>
+
+              <!-- Question No. (Rectangle) -->
+              <div id="u12-1" class="ax_default heading_2 u12" data-label="Question No." style="width: 298px; height: 28px; left: 44px; top: 22px;visibility: inherit">
+                <div id="u12-1_div" class="u12_div" style="width: 298px; height: 28px;visibility: inherit"></div>
+                <div id="u12-1_text" class="text u12_text" style="visibility: inherit">
+                  <p><span>1.Multiple Choice (1 mark)</span></p>
+                </div>
+              </div>
+
+              <!-- A (Rectangle) -->
+              <div id="u13-1" class="ax_default label u13" data-label="A" style="width: 74px; height: 22px; left: 44px; top: 98px;visibility: inherit">
+                <div id="u13-1_div" class="u13_div" style="width: 74px; height: 22px;visibility: inherit"></div>
+                <div id="u13-1_text" class="text u13_text" style="visibility: inherit">
+                  <p><span>A. Feburary</span></p>
+                </div>
+              </div>
+
+              <!-- B (Rectangle) -->
+              <div id="u14-1" class="ax_default label u14" data-label="B" style="width: 67px; height: 22px; left: 44px; top: 134px;visibility: inherit">
+                <div id="u14-1_div" class="u14_div" style="width: 67px; height: 22px;visibility: inherit"></div>
+                <div id="u14-1_text" class="text u14_text" style="visibility: inherit">
+                  <p><span>B. January</span></p>
+                </div>
+              </div>
+
+              <!-- C (Rectangle) -->
+              <div id="u15-1" class="ax_default label u15" data-label="C" style="width: 92px; height: 22px; left: 44px; top: 171px;visibility: inherit">
+                <div id="u15-1_div" class="u15_div" style="width: 92px; height: 22px;visibility: inherit"></div>
+                <div id="u15-1_text" class="text u15_text" style="visibility: inherit">
+                  <p><span>C. November&nbsp; </span></p>
+                </div>
+              </div>
+
+              <!-- D (Rectangle) -->
+              <div id="u16-1" class="ax_default label u16" data-label="D" style="width: 83px; height: 22px; left: 44px; top: 207px;visibility: inherit">
+                <div id="u16-1_div" class="u16_div" style="width: 83px; height: 22px;visibility: inherit"></div>
+                <div id="u16-1_text" class="text u16_text" style="visibility: inherit">
+                  <p><span>D. December</span></p>
+                </div>
+              </div>
+            </div>
+            <div id="u8-2" class="preeval" style="width: 820px; height: 262px;">
+
+              <!-- Question Background (Rectangle) -->
+              <div id="u9-2" class="ax_default box_1 u9" data-label="Question Background" style="width: 820px; height: 262px; left: 0px; top: 0px;visibility: inherit">
+                <div id="u9-2_div" class="u9_div" style="width: 820px; height: 262px;visibility: inherit"></div>
+                <div id="u9-2_text" class="text u9_text" style="visibility: inherit">
+                  <p><span>2</span></p>
+                </div>
+              </div>
+
+              <!-- Question icon (Rectangle) -->
+              <div id="u10-2" class="ax_default box_1 u10" data-label="Question icon" style="width: 12px; height: 32px; left: 17px; top: 20px;visibility: inherit">
+                <div id="u10-2_div" class="u10_div" style="width: 12px; height: 32px;visibility: inherit"></div>
+                <div id="u10-2_text" class="text u10_text" style="display:none; visibility: hidden">
+                  <p></p>
+                </div>
+              </div>
+
+              <!-- Question (Rectangle) -->
+              <div id="u11-2" class="ax_default paragraph u11" data-label="Question" style="width: 530px; height: 26px; left: 44px; top: 60px;visibility: inherit">
+                <div id="u11-2_div" class="u11_div" style="width: 530px; height: 26px;visibility: inherit"></div>
+                <div id="u11-2_text" class="text u11_text" style="visibility: inherit">
+                  <p><span>When is the date of 2021 ASEAN Hackathon?</span></p>
+                </div>
+              </div>
+
+              <!-- Question No. (Rectangle) -->
+              <div id="u12-2" class="ax_default heading_2 u12" data-label="Question No." style="width: 298px; height: 28px; left: 44px; top: 22px;visibility: inherit">
+                <div id="u12-2_div" class="u12_div" style="width: 298px; height: 28px;visibility: inherit"></div>
+                <div id="u12-2_text" class="text u12_text" style="visibility: inherit">
+                  <p><span>1.Multiple Choice (1 mark)</span></p>
+                </div>
+              </div>
+
+              <!-- A (Rectangle) -->
+              <div id="u13-2" class="ax_default label u13" data-label="A" style="width: 74px; height: 22px; left: 44px; top: 98px;visibility: inherit">
+                <div id="u13-2_div" class="u13_div" style="width: 74px; height: 22px;visibility: inherit"></div>
+                <div id="u13-2_text" class="text u13_text" style="visibility: inherit">
+                  <p><span>A. Feburary</span></p>
+                </div>
+              </div>
+
+              <!-- B (Rectangle) -->
+              <div id="u14-2" class="ax_default label u14" data-label="B" style="width: 67px; height: 22px; left: 44px; top: 134px;visibility: inherit">
+                <div id="u14-2_div" class="u14_div" style="width: 67px; height: 22px;visibility: inherit"></div>
+                <div id="u14-2_text" class="text u14_text" style="visibility: inherit">
+                  <p><span>B. January</span></p>
+                </div>
+              </div>
+
+              <!-- C (Rectangle) -->
+              <div id="u15-2" class="ax_default label u15" data-label="C" style="width: 92px; height: 22px; left: 44px; top: 171px;visibility: inherit">
+                <div id="u15-2_div" class="u15_div" style="width: 92px; height: 22px;visibility: inherit"></div>
+                <div id="u15-2_text" class="text u15_text" style="visibility: inherit">
+                  <p><span>C. November&nbsp; </span></p>
+                </div>
+              </div>
+
+              <!-- D (Rectangle) -->
+              <div id="u16-2" class="ax_default label u16" data-label="D" style="width: 83px; height: 22px; left: 44px; top: 207px;visibility: inherit">
+                <div id="u16-2_div" class="u16_div" style="width: 83px; height: 22px;visibility: inherit"></div>
+                <div id="u16-2_text" class="text u16_text" style="visibility: inherit">
+                  <p><span>D. December</span></p>
+                </div>
+              </div>
+            </div>
+            <div id="u8-3" class="preeval" style="width: 820px; height: 262px;">
+
+              <!-- Question Background (Rectangle) -->
+              <div id="u9-3" class="ax_default box_1 u9" data-label="Question Background" style="width: 820px; height: 262px; left: 0px; top: 0px;visibility: inherit">
+                <div id="u9-3_div" class="u9_div" style="width: 820px; height: 262px;visibility: inherit"></div>
+                <div id="u9-3_text" class="text u9_text" style="visibility: inherit">
+                  <p><span>3</span></p>
+                </div>
+              </div>
+
+              <!-- Question icon (Rectangle) -->
+              <div id="u10-3" class="ax_default box_1 u10" data-label="Question icon" style="width: 12px; height: 32px; left: 17px; top: 20px;visibility: inherit">
+                <div id="u10-3_div" class="u10_div" style="width: 12px; height: 32px;visibility: inherit"></div>
+                <div id="u10-3_text" class="text u10_text" style="display:none; visibility: hidden">
+                  <p></p>
+                </div>
+              </div>
+
+              <!-- Question (Rectangle) -->
+              <div id="u11-3" class="ax_default paragraph u11" data-label="Question" style="width: 530px; height: 26px; left: 44px; top: 60px;visibility: inherit">
+                <div id="u11-3_div" class="u11_div" style="width: 530px; height: 26px;visibility: inherit"></div>
+                <div id="u11-3_text" class="text u11_text" style="visibility: inherit">
+                  <p><span>When is the date of 2021 ASEAN Hackathon?</span></p>
+                </div>
+              </div>
+
+              <!-- Question No. (Rectangle) -->
+              <div id="u12-3" class="ax_default heading_2 u12" data-label="Question No." style="width: 298px; height: 28px; left: 44px; top: 22px;visibility: inherit">
+                <div id="u12-3_div" class="u12_div" style="width: 298px; height: 28px;visibility: inherit"></div>
+                <div id="u12-3_text" class="text u12_text" style="visibility: inherit">
+                  <p><span>1.Multiple Choice (1 mark)</span></p>
+                </div>
+              </div>
+
+              <!-- A (Rectangle) -->
+              <div id="u13-3" class="ax_default label u13" data-label="A" style="width: 74px; height: 22px; left: 44px; top: 98px;visibility: inherit">
+                <div id="u13-3_div" class="u13_div" style="width: 74px; height: 22px;visibility: inherit"></div>
+                <div id="u13-3_text" class="text u13_text" style="visibility: inherit">
+                  <p><span>A. Feburary</span></p>
+                </div>
+              </div>
+
+              <!-- B (Rectangle) -->
+              <div id="u14-3" class="ax_default label u14" data-label="B" style="width: 67px; height: 22px; left: 44px; top: 134px;visibility: inherit">
+                <div id="u14-3_div" class="u14_div" style="width: 67px; height: 22px;visibility: inherit"></div>
+                <div id="u14-3_text" class="text u14_text" style="visibility: inherit">
+                  <p><span>B. January</span></p>
+                </div>
+              </div>
+
+              <!-- C (Rectangle) -->
+              <div id="u15-3" class="ax_default label u15" data-label="C" style="width: 92px; height: 22px; left: 44px; top: 171px;visibility: inherit">
+                <div id="u15-3_div" class="u15_div" style="width: 92px; height: 22px;visibility: inherit"></div>
+                <div id="u15-3_text" class="text u15_text" style="visibility: inherit">
+                  <p><span>C. November&nbsp; </span></p>
+                </div>
+              </div>
+
+              <!-- D (Rectangle) -->
+              <div id="u16-3" class="ax_default label u16" data-label="D" style="width: 83px; height: 22px; left: 44px; top: 207px;visibility: inherit">
+                <div id="u16-3_div" class="u16_div" style="width: 83px; height: 22px;visibility: inherit"></div>
+                <div id="u16-3_text" class="text u16_text" style="visibility: inherit">
+                  <p><span>D. December</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Camera view (Group) -->
+          <div id="u17" class="ax_default" data-label="Camera view" data-left="1098" data-top="114" data-width="300" data-height="258">
+
+            <!-- Background (Image) -->
+            <div id="u18" class="ax_default image1" data-label="Background">
+              <img id="u18_img" class="img " src="{% static  'images/student_exam_page/background_u18.svg' %}"/>
+              <div id="u18_text" class="text " style="display:none; visibility: hidden">
+                <p id=my_msg>Wait for Status here</p>
+              </div>
+            </div>
+
+            <!-- Candidate (Shape) -->
+            <div id="u19" class="ax_default icon" data-label="Candidate">
+              <img id="u19_img" class="img " src="{% static  'images/student_exam_page/candidate_u19.svg' %}"/>
+              <div id="u19_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide bar  (Group) -->
+        <div id="u20" class="ax_default" data-label="Slide bar " data-left="0" data-top="0" data-width="127" data-height="955">
+
+          <!-- Slide box (Rectangle) -->
+          <div id="u21" class="ax_default box_1" data-label="Slide box">
+            <div id="u21_div" class=""></div>
+            <div id="u21_text" class="text " style="display:none; visibility: hidden">
+              <p></p>
+            </div>
+          </div>
+
+          <!-- Setting icon (Shape) -->
+          <div id="u22" class="ax_default icon" data-label="Setting icon">
+            <img id="u22_img" class="img " src="{% static  'images/student_exam_page/setting_icon_u22.svg' %}"/>
+            <div id="u22_text" class="text " style="display:none; visibility: hidden">
+              <p></p>
+            </div>
+          </div>
+
+          <!-- Message icon (Shape) -->
+          <div id="u23" class="ax_default icon" data-label="Message icon">
+            <img id="u23_img" class="img " src="{% static  'images/student_exam_page/message_icon_u23.svg' %}"/>
+            <div id="u23_text" class="text " style="display:none; visibility: hidden">
+              <p></p>
+            </div>
+          </div>
+
+          <!-- Message (Rectangle) -->
+          <div id="u24" class="ax_default heading_3" data-label="Message">
+            <div id="u24_div" class=""></div>
+            <div id="u24_text" class="text ">
+              <p><span>Message</span></p>
+            </div>
+          </div>
+
+          <!-- Result (Rectangle) -->
+          <div id="u25" class="ax_default heading_3" data-label="Result">
+            <div id="u25_div" class=""></div>
+            <div id="u25_text" class="text ">
+              <p><span>Result</span></p>
+            </div>
+          </div>
+
+          <!-- Result icon (Group) -->
+          <div id="u26" class="ax_default" data-label="Result icon" data-left="43" data-top="304" data-width="50" data-height="38">
+
+            <!-- Unnamed (Shape) -->
+            <div id="u27" class="ax_default icon">
+              <img id="u27_img" class="img " src="{% static  'images/student_exam_page/u27.svg' %}"/>
+              <div id="u27_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Shape) -->
+            <div id="u28" class="ax_default icon">
+              <img id="u28_img" class="img " src="{% static  'images/student_exam_page/u28.svg' %}"/>
+              <div id="u28_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Exam (Rectangle) -->
+          <div id="u29" class="ax_default heading_3" data-label="Exam">
+            <div id="u29_div" class=""></div>
+            <div id="u29_text" class="text ">
+              <p><span>Exam</span></p>
+            </div>
+          </div>
+
+          <!-- Exam icon (Shape) -->
+          <div id="u30" class="ax_default icon" data-label="Exam icon">
+            <img id="u30_img" class="img " src="{% static  'images/student_exam_page/exam_icon_u30.svg' %}"/>
+            <div id="u30_text" class="text " style="display:none; visibility: hidden">
+              <p></p>
+            </div>
+          </div>
+
+          <!-- Student Name (Rectangle) -->
+          <div id="u31" class="ax_default heading_3" data-label="Student Name">
+            <div id="u31_div" class=""></div>
+            <div id="u31_text" class="text ">
+              <p><span>Student</span></p>
+            </div>
+          </div>
+
+          <!-- Profile Picture (Shape) -->
+          <div id="u32" class="ax_default icon" data-label="Profile Picture">
+            <img id="u32_img" class="img " src="{% static  'images/student_exam_page/profile_picture_u32.svg' %}"/>
+            <div id="u32_text" class="text " style="display:none; visibility: hidden">
+              <p></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Up Bar (Group) -->
+        <div id="u33" class="ax_default" data-label="Up Bar" data-left="141" data-top="0" data-width="1288" data-height="94">
+
+          <!-- Up box (Rectangle) -->
+          <div id="u34" class="ax_default box_1" data-label="Up box">
+            <div id="u34_div" class=""></div>
+            <div id="u34_text" class="text " style="display:none; visibility: hidden">
+              <p></p>
+            </div>
+          </div>
+
+          <!-- Hand in button (Rectangle) -->
+          <div id="u35" class="ax_default primary_button" data-label="Hand in button">
+            <div id="u35_div" class=""></div>
+            <div id="u35_text" class="text ">
+              <p><span>Hand in</span></p>
+            </div>
+          </div>
+
+          <!-- Proctoring Ongoing (Rectangle) -->
+          <div id="u36" class="ax_default heading_1" data-label="Proctoring Ongoing">
+            <div id="u36_div" class=""></div>
+            <div id="u36_text" class="text ">
+              <p><span>Proctoring Ongoing</span></p>
+            </div>
+          </div>
+
+          <!-- Exam name (Rectangle) -->
+          <div id="u37" class="ax_default heading_2" data-label="Exam name">
+            <div id="u37_div" class=""></div>
+            <div id="u37_text" class="text ">
+              <p><span>Hackathon Exam A001</span></p>
+            </div>
+          </div>
+
+          <!-- Time remained (Rectangle) -->
+          <div id="u38" class="ax_default heading_2" data-label="Time remained">
+            <div id="u38_div" class=""></div>
+            <div id="u38_text" class="text ">
+              <p><span>Time remained: 00:00:00</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script src="{% static  'resources/scripts/axure/ios.js' %}"></script>
+    <script>
+      ////////////////////////////--detect window is not focused
+function display_msg() {
+if ( document.hasFocus() ) {
+document.getElementById('my_msg').style.backgroundColor = "#00f000";
+document.getElementById('my_msg').innerHTML = "This web page is in Focus ";
+}
+else
+{
+document.getElementById('my_msg').style.backgroundColor = "#f07814";
+document.getElementById('my_msg').innerHTML = "This web page is NOT in Focus ";
+}
+reload();
+}
+window.onload=myFunction;
+//////////////
+    </script>
+  </body>
+
+  
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
+    body {
+      margin: 0;
+	background: rgb(255, 255, 255);
+	font-family: 'Work Sans', sans-serif;
+	font-weight: 800;
+}
+
+.container {
+	width: 80%;
+	margin: 0 auto;
+}
+
+header {
+  background: #55d6aa;
+}
+
+header::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.logo {
+  float: left;
+  padding: 10px 0;
+}
+
+nav {
+  float: right;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 70px;
+  padding-top: 23px;
+
+  position: relative;
+}
+
+nav a {
+  color: #444;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+nav a:hover {
+  color: #000;
+}
+
+nav a::before {
+  content: '';
+  display: block;
+  height: 5px;
+  background-color: #444;
+
+  position: absolute;
+  top: 0;
+  width: 0%;
+
+  transition: all ease-in-out 250ms;
+}
+
+nav a:hover::before {
+  width: 100%;
+}
+
+#element {
+	margin: 40px auto 20px auto;
+	height: 200px;
+	width: 400px;
+	background-color: #e9e9e9;
+	font-size: 20px;
+	padding: 40px 0 0 0;
+	text-align: center;
+	box-sizing: border-box;
+}
+
+#go-button {
+	width: 200px;
+	display: block;
+	margin: 50px auto 0 auto;
+}
+
+/* webkit requires explicit width, height = 100% of sceeen */
+/* webkit also takes margin into account in full screen also - so margin should be removed (otherwise black areas will be seen) */
+#element:-webkit-full-screen {
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	margin: 0;
+  overflow: auto;
+}
+
+#element:-moz-full-screen {
+	background-color: white;
+	margin: 0;
+  overflow: auto;
+}
+
+#element:-ms-fullscreen {
+	background-color: white;
+	margin: 0;
+  overflow: auto;
+}
+
+/* W3C proposal that will eventually come in all browsers */
+#element:fullscreen { 
+	background-color: white;
+	margin: 0;
+  overflow: auto;
+}
+
+    #my_camera {
+      width: 320px;
+      height: 240px;
+      border: 1px solid black;
+    }
+  </style>
+  
+  <body onload="myFunction()" >
+    
+    
+    
+    <div id="element" >
+      <center>
+      <span>Full Screen Mode Disabled</span>
+      <button id="go-button">Enable Full Screen</button>
+      
+<p id=my_msg>Wait for Status here</p>
+<h3>Webcam Camera</h3>
+    <div id="my_camera"></div>
+    <h3>Camera snapshot</h3>
+    <div id="results"></div>
+        
+    <div id="file"></div>
+    <header>
+      <h1>voice recorder</h1>
+      <h1 id="status">Status</h1>
+      
+    </header>
+    <!--button for 'start recording'-->
+    <p>
+      <button id="btnStart">START RECORDING</button>
+
+	  <button id="btnStop">STOP RECORDING</button>
+	  
+      <!--button for 'stop recording'-->
+    </p>
+
+    <!--for record-->
+    <audio controls></audio>
+    <!--'controls' use for add 
+	play, pause, and volume-->
+
+    <!--for play the audio-->
+    <audio id="adioPlay" controls><source src="" type="audio/mpeg"></audio>
+    </center>
+    </div>
+    
+  </form>
+  </body>
+  
+
+  <script>
+
+function downloadPDF(pdf) {
+    const linkSource = `data:application/pdf;base64,${pdf}`;
+    const downloadLink = document.createElement("a");
+    const fileName = "vct_illustration.pdf";
+
+    downloadLink.href = linkSource;
+    downloadLink.download = fileName;
+    downloadLink.click();
+}
+
+    function display_c(){
+    
+    }
+    
+        var fileName = "";
+        var data_uri = "";
+        var str_counter_0 = 1;
+        var str_counter_1 = "Image_snapshot_"+str_counter_0;
+        var str_counter_2 = "audio_recording_"+str_counter_0;
+
+      function reload(){
+        var refresh=1000; // Refresh rate in milli seconds
+    mytime=setTimeout('display_msg()',refresh)
+         var container = document.getElementById("my_msg");
+         var content = container.innerHTML;
+         container.innerHTML= content; 
+
+        //this line is to watch the result in console , you can remove it later	
+          console.log("Refreshed"); 
+      }
+      
+      function myFunction() {
+        reload();
+        /* Get into full screen */
+    function GoInFullscreen(element) {
+      if(element.requestFullscreen){
+        element.requestFullscreen();
+      }else if(element.mozRequestFullScreen)
+        element.mozRequestFullScreen();
+      else if(element.webkitRequestFullscreen)
+        element.webkitRequestFullscreen();
+      else if(element.msRequestFullscreen)
+        element.msRequestFullscreen();
+    }
+    
+    /* Get out of full screen */
+    function GoOutFullscreen() {
+      if(document.exitFullscreen){
+        document.exitFullscreen();}
+      else if(document.mozCancelFullScreen)
+        document.mozCancelFullScreen();
+      else if(document.webkitExitFullscreen)
+        document.webkitExitFullscreen();
+      else if(document.msExitFullscreen)
+        document.msExitFullscreen();
+    }
+    
+    /* Is currently in full screen or not */
+    function IsFullScreenCurrently() {
+      var full_screen_element = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement || null;
+      
+      // If no element is in full-screen
+      if(full_screen_element === null){
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
+    
+    $("#go-button").on('click', function() {
+      if(IsFullScreenCurrently())
+        GoOutFullscreen();
+      else
+        GoInFullscreen($("#element").get(0));
+    });
+    
+    $(document).on('fullscreenchange webkitfullscreenchange mozfullscreenchange MSFullscreenChange', function() {
+      if(IsFullScreenCurrently()) {
+        $("#element span").text('Full Screen Mode Enabled');
+        $("#go-button").text('Disable FullScreen');
+      }
+      else {
+        setTimeout(alert("Please return to the exam in fullscreen mode or you will be disqualified for this exam "), 100);
+        $("#element span").text('Full Screen Mode Disabled');
+        $("#go-button").text('Enable Full Screen');
+      }
+    });
+    
+    
+        Webcam.set({
+          width: 320,
+          height: 240,
+          image_format: "jpeg",
+          jpeg_quality: 90,
+        });
+        Webcam.attach("#my_camera");
+    
+        var intervalId = window.setInterval(function () {
+          take_snapshot(data_uri);
+        }, 10000);
+    
+        function take_snapshot(data_uri) {
+          // take snapshot and get image data
+          Webcam.snap(function (data_uri, fileName) {
+            var current = new Date();
+            $name = "'candidate name'";
+            fileName = $name + " " + current.toLocaleTimeString() + " " + data_uri;
+            let btnstop = document.querySelector('#btnStop').click();
+            let btn = document.querySelector('#btnStart').click();
+            snapshots
+              .update({
+                [str_counter_1]: data_uri,
+              })
+              .then(function () {
+                str_counter_0++;
+                str_counter_1 = "Image_snapshot_"+str_counter_0;
+                console.log("Image saved successfully");
+                
+              })
+              .catch(function (error) {
+                console.log("Got an error: ", error);
+              });
+            retrieveImages(data_uri);
+          });
+        }
+    
+        function retrieveImages(data_uri) {
+          
+          const docRef = firestore.collection("snapshots").doc("nizam");
+          docRef
+            .get()
+            .then(function (doc) {
+              if (doc.exists) {
+                //console.log("Document data:", doc.data().Image_snapshot_1);
+                for (let key in doc.data()) { 
+                    if (doc.data().hasOwnProperty(key)) 
+                    { 
+                        value = doc.data()[key]; 
+                        console.log(value);
+                        document.getElementById("results").innerHTML =
+                        "<img src='" +doc.data().Image_snapshot_1+"'/>";
+                    } 
+                } 
+                // take snapshot and get image data
+                
+              } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+              }
+            })
+            .catch(function (error) {
+              console.log("Error getting document:", error);
+            });
+        }
+    
+    
+          let audioIN = { audio: true };
+          // audio is true, for recording
+    
+          // Access the permission for use
+          // the microphone
+          navigator.mediaDevices
+            .getUserMedia(audioIN)
+    
+            // 'then()' method returns a Promise
+            .then(function (mediaStreamObj) {
+              // Connect the media stream to the
+              // first audio element
+              let audio = document.querySelector("audio");
+              //returns the recorded audio via 'audio' tag
+    
+              // 'srcObject' is a property which
+              // takes the media object
+              // This is supported in the newer browsers
+              if ("srcObject" in audio) {
+                audio.srcObject = mediaStreamObj;
+              } else {
+                // Old version
+                audio.src = window.URL.createObjectURL(mediaStreamObj);
+              }
+    
+              // It will play the audio
+              audio.onloadedmetadata = function (ev) {
+                // Play the audio in the 2nd audio
+                // element what is being recorded
+                audio.play();
+              };
+    
+              // Start record
+              let start = document.getElementById("btnStart");
+              let btn = document.querySelector('#btnStart').click(); 
+    
+              // Stop record
+              let stop = document.getElementById("btnStop");
+    
+              // 2nd audio tag for play the audio
+              let playAudio = document.getElementById("adioPlay");
+    
+              // This is the main thing to recorde
+              // the audio 'MediaRecorder' API
+              let mediaRecorder = new MediaRecorder(mediaStreamObj);
+              // Pass the audio stream
+              mediaRecorder.start();
+              document.getElementById('status').innerHTML = "Recording";
+              // Start event
+              start.addEventListener("click", function (ev) {
+          mediaRecorder.start();
+          document.getElementById('status').innerHTML = "Recording";
+                // console.log(mediaRecorder.state);
+              });
+    
+              // Stop event
+              stop.addEventListener("click", function (ev) {
+          mediaRecorder.stop();
+          document.getElementById('status').innerHTML = "Stopped";
+                // console.log(mediaRecorder.state);
+              });
+    
+              // If audio data available then push
+              // it to the chunk array
+              mediaRecorder.ondataavailable = function (ev) {
+                dataArray.push(ev.data);
+              };
+    
+              // Chunk array to store the audio data
+              let dataArray = [];
+    
+              // Convert the audio data in to blob
+              // after stopping the recording
+              mediaRecorder.onstop = function (ev) {
+                // blob of type mp3
+                let audioData = new Blob(dataArray, { type: "audio/mp3;" });
+    
+                // After fill up the chunk
+                // array make it empty
+                dataArray = [];
+    
+                // Creating audio url with reference
+                // of created blob named 'audioData'
+                let audioSrc = window.URL.createObjectURL(audioData);
+          var reader = new FileReader(); 
+            reader.readAsDataURL(audioData); 
+            reader.onloadend = function () { 
+            var base64String = reader.result; 
+          snapshots
+              .update({
+                [str_counter_2]: base64String,
+              })
+              .then(function () {
+                str_counter_2 = "audio_recording_"+str_counter_0;
+                console.log("audio saved successfully");
+              })
+              .catch(function (error) {
+                console.log("Got an error: ", error);
+              });
+            // Simply Print the Base64 Encoded String, 
+            // without additional data: Attributes. 
+            } 
+                // Pass the audio url to the 2nd video tag
+                playAudio.src = audioSrc;
+              };
+            })
+    
+            // If any error occurs then handles the error
+            .catch(function (err) {
+              console.log(err.name, err.message);
+            });
+            }
+       
+
+////////////////////////////--detect window is not focused
+function display_msg() {
+if ( document.hasFocus() ) {
+document.getElementById('my_msg').style.backgroundColor = "#00f000";
+document.getElementById('my_msg').innerHTML = "This web page is in Focus ";
+}
+else
+{
+document.getElementById('my_msg').style.backgroundColor = "#f07814";
+document.getElementById('my_msg').innerHTML = "This web page is NOT in Focus ";
+}
+reload();
+}
+window.onload=myFunction;
+//////////////
+</script>
+</html>
+{% endblock %}
