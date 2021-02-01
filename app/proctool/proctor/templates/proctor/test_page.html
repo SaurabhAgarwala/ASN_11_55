@@ -747,7 +747,7 @@ if(type === "paypal") {
     <a href="https://auth.geeksforgeeks.org/user/nizamyuseri/" style="position:relative;z-index:1;"><img alt="nizamyuseri" src="https://media.geeksforgeeks.org/img-practice/user_web-1598433228.svg" class="demo-avatar"></a>
           </div>
 <div class="demo-avatar-dropdown userNameDiv">
-  <span class="mdl-layout-title userName">nizamyuseri </span>
+  <span class="mdl-layout-title userName">nizam yuseri </span>
 </div>
 </header>
 <nav class="demo-navigation mdl-navigation">
@@ -973,7 +973,10 @@ if (distance < 0) {
       }
   </style>
   <div><b id="allow" style="font-size:20px">please allow access to camera and mic and refresh this page to begin the exam</b></div>
-  <div class="mdl-grid"><div class="mdl-cell mdl-cell--1-offset-desktop mdl-cell--6-col">
+  <center><h3>Please stay in the fullscreen mode or will be disqualified for this exam</h3></center>
+  <button id="go-button">Click here to enable Full Screen</button>
+  <div id="element" style="display:none">
+  <div class="mdl-grid"><div  class="mdl-cell mdl-cell--1-offset-desktop mdl-cell--6-col">
   <div class="demo-card-square mdl-card mdl-shadow--2dp">
 <div class="mdl-card__title mdl-card--expand featured">
 <p class="mdl-card__title-text feedTitle" >
@@ -1075,6 +1078,7 @@ if (distance < 0) {
 </div>
 </div>
 </div>
+</div>
     
    <!-- Global site tag (gtag.js) - Google Analytics -->
 
@@ -1155,39 +1159,7 @@ $(window).resize(function(){
 <table cellspacing="0" cellpadding="0" class="gstl_50 gssb_c" style="width: 257px; display: none; top: 57px; position: absolute; left: 1041px;"><tbody><tr><td class="gssb_f"></td><td class="gssb_e" style="width: 100%;"></td></tr></tbody></table></body></html></center>
 
     
-    <div id="element" >
-      
-      <span>Full Screen Mode Disabled</span>
-      <button id="go-button">Enable Full Screen</button>
-      
 
-<h3>Webcam Camera</h3>
-    <div id="my_camera"></div>
-    <h3>Camera snapshot</h3>
-    <div id="results"></div>
-        
-    <div id="file"></div>
-    <header>
-      <h1>voice recorder</h1>
-      <h1 id="status">Status</h1>
-      
-    </header>
-    <!--button for 'start recording'-->
-    <p>
-      <button id="btnStart">START RECORDING</button>
-
-	  <button id="btnStop">STOP RECORDING</button>
-	  
-      <!--button for 'stop recording'-->
-    </p>
-    <!--'controls' use for add 
-	play, pause, and volume-->
-
-    <!--for play the audio-->
-    
-    
-    </center>
-    </div>
     
   </form>
   </body>
@@ -1274,13 +1246,13 @@ $(window).resize(function(){
     
     $(document).on('fullscreenchange webkitfullscreenchange mozfullscreenchange MSFullscreenChange', function() {
       if(IsFullScreenCurrently()) {
-        $("#element span").text('Full Screen Mode Enabled');
         $("#go-button").text('Disable FullScreen');
+        document.getElementById('element').style.display = "";
       }
       else {
         setTimeout(alert("Please return to the exam in fullscreen mode or you will be disqualified for this exam "), 100);
-        $("#element span").text('Full Screen Mode Disabled');
         $("#go-button").text('Enable Full Screen');
+        document.getElementById('element').style.display = "none";
       }
     });
     

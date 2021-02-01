@@ -17,3 +17,11 @@ def test_view(request):
 def student_exam(request):
     context = {}
     return render(request, 'proctor/student_exam_page.html', context)
+
+def login(request):
+    context = {}
+    return render(request, 'proctor/login.html', context)
+
+def logout(request):
+    context = {}
+    return render(request, 'proctor/logout.php', context)
