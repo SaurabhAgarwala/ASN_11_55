@@ -1,7 +1,9 @@
-import tensorflow as tf
+import face_recognition
+import dlib
+import cv2 as cv
+import os
 import numpy as np
-import cv2
-
+import tensorflow as tf
 from tensorflow.keras import Model
 from tensorflow.keras.layers import (
     Add,
@@ -16,6 +18,166 @@ from tensorflow.keras.layers import (
 )
 from tensorflow.keras.regularizers import l2
 import wget
+
+
+### Face Matching Features
+
+def load_known_faces(BASE_DIR):
+    '''
+    Call this function to load images from participant
+
+    '''
+    known_faces = []
+    for filename in os.listdir(BASE_DIR):
+        path = os.path.join(BASE_DIR, filename)
+        known_faces.append((filename.replace('.jpeg',''), path))
+
+    return known_faces
+
+def compare_faces(img1, img2):
+    # Load the image
+    image1 = face_recognition.load_image_file(img1)
+    image2 = face_recognition.load_image_file(img2)
+
+    # Get face encoding
+    try:
+        image1_encode = face_recognition.face_encodings(image1)[0]
+        image2_encode = face_recognition.face_encodings(image2)[0]
+        # Compare faces and return True / False
+        results = face_recognition.compare_faces([image1_encode], image2_encode)
+        print('Encode done....')
+        # Return true or false
+        return results[0]
+
+    except IndexError as e :
+        print(e)
+
+### Head pose from images
+
+
+def drawPolyline(img, shapes, start, end, isClosed= False):
+    points= []
+    for i in range(start, end+1):
+        point =[shapes.part(i).x, shapes.part(i).y]
+        points.append(point)
+    points = np.array(points, dtype = np.int32)
+    cv.polylines(img, [points], isClosed, (125, 200, 0),
+    thickness=1, lineType=cv.LINE_8)
+
+
+def draw(img, shapes):
+    drawPolyline(img, shapes, 0, 16)
+    drawPolyline(img, shapes, 17, 21)
+    drawPolyline(img, shapes, 22, 26)
+    drawPolyline(img, shapes, 27, 30)
+    drawPolyline(img, shapes, 30, 35, True)
+    drawPolyline(img, shapes, 36, 41, True)
+    drawPolyline(img, shapes, 42, 47, True)
+    drawPolyline(img, shapes, 48, 59, True)
+    drawPolyline(img, shapes, 60, 67, True)
+
+
+def ref3DModel():
+    modelPoints = [[0.0, 0.0, 0.0],
+                   [0.0, -330.0, -65.0],
+                   [-225.0, 170.0, -135.0],
+                   [225.0, 170.0, -135.0],
+                   [-150.0, -150.0, -125.0],
+                   [150.0, -150.0, -125.0]]
+    return np.array(modelPoints, dtype=np.float64)
+
+def ref2dImagePoints(shape):
+    imagePoints = [[shape.part(30).x, shape.part(30).y],
+                   [shape.part(8).x, shape.part(8).y],
+                   [shape.part(36).x, shape.part(36).y],
+                   [shape.part(45).x, shape.part(45).y],
+                   [shape.part(48).x, shape.part(48).y],
+                   [shape.part(54).x, shape.part(54).y]]
+    return np.array(imagePoints, dtype=np.float64)
+
+
+def cameraMatrix(fl, center):
+    mat = [[fl, 1, center[0]],
+                    [0, fl, center[1]],
+                    [0, 0, 1]]
+    return np.array(mat, dtype=np.float)
+
+
+def gaze_tracking(image, PREDICTOR_PATH, focal=1):
+    detector = dlib.get_frontal_face_detector()
+    predictor = dlib.shape_predictor(PREDICTOR_PATH)
+
+    img = cv.imread(image)
+    faces = detector(cv.cvtColor(img, cv.COLOR_BGR2RGB), 0)
+
+    face3Dmodel = ref3DModel()
+    count = 0
+        
+    for face in faces :
+        newImg= cv.cvtColor(img, cv.COLOR_BGR2RGB)
+        shape = predictor(newImg, face)
+
+        draw(img, shape)
+
+        refImgPts = ref2dImagePoints(shape)
+
+        h, w, c = img.shape
+
+        focalLength = focal * w
+            
+        camMatrix = cameraMatrix(focalLength, (h/2, w/2))
+
+        mdist = np.zeros((4,1), dtype= np.float64)
+
+         # calculate rotation and translation vector using solvePnP
+        success, rotationVector, translationVector = cv.solvePnP(face3Dmodel, refImgPts, camMatrix, mdist)
+
+        noseEndPoints3D= np.array([[0, 0, 1000.0]], dtype= np.float64)
+        noseEndPoints2D, jacobian = cv.projectPoints(
+                noseEndPoints3D, rotationVector, translationVector, camMatrix, mdist
+            )
+
+        # Draw nose line
+
+        p1 = (int(refImgPts[0, 0]), int(refImgPts[0, 1]))
+        p2 = (int(noseEndPoints2D[0, 0, 0]), int(noseEndPoints2D[0,0, 1]))
+
+        cv.line(img, p1, p2, (110, 220, 0), thickness=2, lineType= cv.LINE_AA)
+
+        ## Calculatiing angle
+        rmat, jac = cv.Rodrigues(rotationVector)
+        angles, mtxR, mtxQ, Qx, Qy, Qz = cv.RQDecomp3x3(rmat)
+
+        print('*', 80)
+        print('Angle: ', angles)
+
+        x = np.arctan2(Qx[2][1], Qx[2][2])
+        y = np.arctan2(-Qy[2][0], np.sqrt((Qy[2][1] * Qy[2][1] ) + (Qy[2][2] * Qy[2][2])))
+        z = np.arctan2(Qz[0][0], Qz[1][0])
+
+        print("Axis X : ", x)
+        print("Axis Y :", y)
+        print("Axis Z :", z)
+        print('*' * 80)
+
+        gaze = "Looking : "
+        if angles[1] < -15 :
+            gaze += "Left"
+            print('Please Look forward, do not cheating')
+            return "Warning!"
+            
+            
+        elif angles[1] > 15:
+            gaze+= "Right"
+            print('Please Look Forward, do not cheating')
+            return "Warning!"
+
+        else :
+            gaze += "Forward"
+            
+
+### Object Detection and person counting
+
 
 yolo_anchors = np.array([(10, 13), (16, 30), (33, 23), (30, 61), (62, 45),
                          (59, 119), (116, 90), (156, 198), (373, 326)],
@@ -103,10 +265,10 @@ def draw_outputs(img, outputs, class_names):
     for i in range(nums):
         x1y1 = tuple((np.array(boxes[i][0:2]) * wh).astype(np.int32))
         x2y2 = tuple((np.array(boxes[i][2:4]) * wh).astype(np.int32))
-        img = cv2.rectangle(img, x1y1, x2y2, (0, 255, 0), 2)
-        img = cv2.putText(img, '{} {:.4f}'.format(
+        img = cv.rectangle(img, x1y1, x2y2, (0, 255, 0), 2)
+        img = cv.putText(img, '{} {:.4f}'.format(
             class_names[int(classes[i])], objectness[i]),
-            x1y1, cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, (125, 0,125), 2)
+            x1y1, cv.FONT_HERSHEY_COMPLEX_SMALL, 1, (125, 0,125), 2)
     return img
 
 
@@ -325,8 +487,8 @@ def preprocess_img(image):
     Call this function for preprocess image
     params image: path to the image
     '''
-    img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    img = cv2.resize(img, (320, 320))
+    img = cv.cvtColor(image, cv.COLOR_BGR2RGB)
+    img = cv.resize(img, (320, 320))
     img = img.astype(np.float32)
     img = np.expand_dims(img, 0)
     img = img / 255
@@ -357,17 +519,3 @@ def predict(image, prep_img):
         print('More than one person detected')
     image = draw_outputs(image, (boxes, scores, classes, nums), class_names)
     return image
-
-def main():
-    weights_download()
-    print('Download the YoloV3 Model Weights')
-    test_img = cv2.imread('test_images/image2.jpg')
-    prep_img = preprocess_img(test_img)
-    result = predict(test_img, prep_img)
-
-    # Show result
-    cv2.imshow('Predict Image', result)
-    cv2.waitKey(0)
-
-if __name__ == "__main__":
-    main()
