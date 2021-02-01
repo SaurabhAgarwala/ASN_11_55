@@ -28,8 +28,7 @@
 }
 
 .container {
-	width: 80%;
-	margin: 0 auto;
+	width: 100%;
 }
 
 header {
@@ -43,6 +42,7 @@ header::after {
 }
 
 .logo {
+  text-align: left;
   float: left;
   padding: 10px 0;
 }
@@ -374,7 +374,6 @@ cursor: pointer;
 
 <body>
 <div style="  position: fixed;" class="mdl-layout__container"><div data-upgraded=",MaterialLayout">
-<div aria-expanded="false" role="button" tabindex="0" class="mdl-layout__drawer-button"></div>
   <header >
     <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -383,11 +382,14 @@ cursor: pointer;
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <div class="container" >
-    <h1 class="logo"><i href="https://i.ibb.co/w7Wv8z1/Hack-logo.png"></i></h1>
+  
+  <div class="container"  >
+
 
     <nav style="height:70px" >
       <ul>
+        <li>    <img style="width:60px;height:60px;margin-top:4px" src="https://i.ibb.co/w7Wv8z1/Hack-logo.png"/></li>
+          <li><p style="text-align:left">Online Proctoring System</p></li>
         <li><p id="my_msg"></p></li>
         <li><b style = "font-family:roboto,garamond,serif;font-size:18px;" id="hack">Hackathon Exam</b></li>
         <li><p id="demo" style="visibility:hidden"></p></li>
@@ -840,7 +842,7 @@ footer {
     </div>
     </div>
     <center><p style = "font-family:roboto,garamond,serif;font-size:30px;">All the best!</p><i class="fas fa-thumbs-up fa-2x"></i></center>
-    <button valign="bottom" id="go-button" class="btn btn-success">Attempt exam</button>
+    <button valign="bottom" id="go-button" class="btn btn-success"><p style = "font-family:roboto,garamond,serif;font-size:25px;">Attempt exam</p></button>
   </div>
 
   <button style="display:none" id="btnStart"></button>
