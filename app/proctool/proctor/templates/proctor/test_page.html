@@ -1384,30 +1384,31 @@ if (document.hasFocus() == true) {
 }
 else
 {
-  violation++;
-  if(violation > 5){
-    console.log("testing");
-    var x = document.getElementsByClassName("demo-card-square");
-    var n;
-    for(n=0;n < x.length;n++){
-    x[n].style.display = "none";
-    }
-    document.getElementById("violate").innerHTML = "You have violated the exam rules more than 5 secs you have been disqualified";
-    document.getElementById("violate").style.display = "";
-    document.getElementById("my_msg").style.display = "block";
-    document.getElementById("hand").style.display = "none";
-    window.stop();
-    
-  } else {
-  if(isfullscreen == true){
-  alert("Please stay in this exam window or you will get disqualified\nViolations count: "+violation);
   document.getElementById('my_msg').style.backgroundColor = "#f07814";
   document.getElementById('my_msg').innerHTML = "This web page is NOT in Focus";
-  }
+  violation++;
+}
+  // if(violation > 5){
+  //   console.log("testing");
+  //   var x = document.getElementsByClassName("demo-card-square");
+  //   var n;
+  //   for(n=0;n < x.length;n++){
+  //   x[n].style.display = "none";
+  //   }
+  //   // document.getElementById("violate").innerHTML = "You have violated the exam rules more than 5 secs you have been disqualified";
+  //   document.getElementById("violate").style.display = "";
+  //   document.getElementById("my_msg").style.display = "block";
+  //   document.getElementById("hand").style.display = "none";
+  //   window.stop();
+    
+  // } else {
+  if(isfullscreen == true){
+  alert("Please stay in this exam window or you will get disqualified\nViolations count: "+violation);
+  // alert("Please stay in this exam window or you will get disqualified\nViolations count: "+violation);
   }
 }
 reload();
-}
+// }
 window.onload=myFunction;
 //////////////
 
