@@ -64,7 +64,7 @@ def face_rec(file, known_faces_dir):
 
 def main():
     BASE_DIR = 'ImagesParticipant'
-    name = face_rec('test.jpg', BASE_DIR)
+    name = face_rec('profile.jpg', BASE_DIR)
     print('Test foto : ',name)
 
 if __name__ == "__main__":
