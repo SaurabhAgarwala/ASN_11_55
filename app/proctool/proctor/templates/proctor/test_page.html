@@ -374,7 +374,7 @@ cursor: pointer;
 
 <body>
 <div style="  position: fixed;" class="mdl-layout__container"><div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header has-drawer is-upgraded" data-upgraded=",MaterialLayout">
-<header class="demo-header mdl-layout__header is-casting-shadow"><div aria-expanded="false" role="button" tabindex="0" class="mdl-layout__drawer-button"><i class="material-icons"></i></div>
+<div aria-expanded="false" role="button" tabindex="0" class="mdl-layout__drawer-button"><i class="material-icons"></i></div>
   <header >
     <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -390,110 +390,21 @@ cursor: pointer;
       <ul>
         <li><p id="my_msg"></p></li>
         <li><b style="font-size:15px;display:none" id="hack">Hackathon Exam A001</b></li>
-        <li><b style="font-size:15px;display:none" id="proc">Proctoring Ongoing</b></li>
-        <li><p id="demo"></p></li>
+        <li><b style="font-size:15px;display:none" id="proc"></b></li>
+        <li><p id="demo" style="visibility:hidden"></p></li>
         <li>
-          <button class="btn btn-primary" style="display:none" id="hand">Hand in</button></li>
+        
       </ul>
     </nav>
   </div>
   </header>
   <div class="mdl-layout-title mdl-grid--no-spacing" style="width:100%;position: fixed;" hidden >
-      <div class="mdl-layout--large-screen-only mdl-cell mdl-cell--4-col-desktop header-group header-drop-downs" style="margin-left: 20px;">
-          <a class="parent-list-item" href="https://www.geeksforgeeks.org/" style="font-size:15px;">Explore</a>
-          <a class="parent-list-item course-dropdown-list" style="font-size:15px;">Courses
-              <i class="material-icons header-main__list-item-caret" style="transform: rotate(0deg); transition: all 0.5s ease 0s;">keyboard_arrow_down</i>
-          </a>
-          <ul class="course-dropdown">
-              <li class="course-dropdown__list-item">
-                  <a href="https://practice.geeksforgeeks.org/jobs/" target="_self">Get hired</a>
-              </li>
-              <li class="course-dropdown__list-item">
-                  <a href="https://practice.geeksforgeeks.org/jobs/" target="_self">Campus Ambassador Program</a>
-              </li>
-              <li class="course-dropdown__list-item">
-                  <a href="https://www.geeksforgeeks.org/computer-science-projects/" target="_self">Project</a>
-              </li>
-              <li class="course-dropdown__list-item">
-                  <a href="https://www.geeksforgeeks.org/geek-of-the-month/" target="_self">Geek of the Month</a>
-              </li>
-              <li class="course-dropdown__list-item">
-                  <a href="https://www.geeksforgeeks.org/campus-geek-of-the-month/" target="_self">Campus Geek of the Month</a>
-              </li>
-              <li class="course-dropdown__list-item">
-                  <a href="https://www.geeksforgeeks.org/placements-gq/" target="_self">Placement Course</a>
-              </li>
-              <li class="course-dropdown__list-item">
-                  <a href="https://www.geeksforgeeks.org/category/competitive-programming/" target="_self">Competititve Programming</a>
-              </li>
-              <li class="course-dropdown__list-item">
-                  <a href="https://www.geeksforgeeks.org/testimonials/" target="_self">Testimonials</a>
-              </li>
-              <li class="course-dropdown__list-item">
-                  <a href="https://www.geeksforgeeks.org/category/geek-on-the-top/" target="_self">Geek on the Top</a>
-              </li>
-              <li class="course-dropdown__list-item">
-                  <a href="https://www.geeksforgeeks.org/careers/" target="_self">Careers</a>
-              </li>
-              <li class="course-dropdown__list-item">
-                  <a href="https://www.geeksforgeeks.org/internship/" target="_self">Internship</a>
-              </li>
-          </ul>
-          <a class="parent-list-item" href="https://contribute.geeksforgeeks.org/" style="font-size:15px;">Get Hired</a>
-      </div>
-      <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--3-col-tablet mdl-cell--1-col-phone header-group header-logo-content">
-           <a href="https://auth.geeksforgeeks.org/" class="header-main__logo">
-              
-          </a>
-      </div>
-      <div class="mdl-layout--large-screen-only mdl-cell mdl-cell--1-col-desktop header-group header-profile-content" style="float:right;">
-                                  <div class="avatarHeaderDiv avatarDiv userProfileDp">
-                    <img alt="nizamyuseri" src="https://media.geeksforgeeks.org/img-practice/user_web-1598433228.svg" class="demo-avatar whiteBgColor">
-                  </div>
-                  <ul class="mega-dropdown">
-                      <a href="https://auth.geeksforgeeks.org/user/nizamyuseri/profile">
-                          <li class="mega-dropdown__list-item">
-                              <span class="gfg-icon gfg-icon_user"></span>
-                              <span class="profile-dp-dropdown-text">My Profile</span>
-                          </li>
-                      </a>
-                      <a href="https://practice.geeksforgeeks.org/myCourses">
-                          <li class="mega-dropdown__list-item">
-                              <span class="gfg-icon gfg-icon_courses"></span>
-                              <span class="profile-dp-dropdown-text">My Courses</span>
-                          </li>
-                      </a>
-                      <a href="https://premium.geeksforgeeks.org/">
-                          <li class="mega-dropdown__list-item">
-                              <span class="gfg-icon gfg-icon_premium"></span>
-                              <span class="profile-dp-dropdown-text">Go Premium</span>
-                          </li>
-                      </a>
-                      <a href="https://auth.geeksforgeeks.org/edit-profile.php">
-                          <li class="mega-dropdown__list-item">
-                              <span class="gfg-icon gfg-icon_edit"></span>
-                              <span class="profile-dp-dropdown-text">Edit Profile</span>
-                          </li>
-                      </a>
-                      <a href="https://auth.geeksforgeeks.org/account-settings.php">
-                          <li class="mega-dropdown__list-item">
-                              <span class="material-icons" style="color:#434d51!important ;font-size:22px !important;">settings</span>
-                              <span class="profile-dp-dropdown-text" style="vertical-align:super;">Account Settings</span>
-                          </li>
-                      </a>
-                      <a href="https://auth.geeksforgeeks.org/logout.php/?to=https://auth.geeksforgeeks.org/user/nizamyuseri">
-                          <li class="mega-dropdown__list-item">
-                              <span class="gfg-icon gfg-icon_logout"></span>
-                              <span class="profile-dp-dropdown-text">Logout</span>
-                          </li>
-                      </a>
-                  </ul>
-                       </div>
-       <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--1-col-phone header-group header-search-content" style="vertical-align: middle;">
-                              
-                      </div>
+      
+      
+      
+       
   </div>
-</header>
+
 
 
 <!-- Modal for Custom GCSE result display -->
@@ -754,48 +665,8 @@ if(type === "paypal") {
 <a class="mdl-navigation__link " href="">
   <span class="gfg-icon leftbar-icon gfg-icon_user"></span>exam
 </a>
-<a class="mdl-navigation__link " href="">
-  <span class="gfg-icon leftbar-icon gfg-icon_code"></span>Practice
-</a>
-        <a class="mdl-navigation__link " href="">
-      <span class="gfg-icon leftbar-icon gfg-icon_feed"></span>Feed
-  </a>
-  <a class="mdl-navigation__link " href="">
-      <i class="material-icons leftbar-icon" role="presentation">ballot</i>Interests
-  </a>
-  <a class="mdl-navigation__link " href="">
-    <span class="gfg-icon leftbar-icon gfg-icon_todo-done"></span>To Do/Done
-  </a>
-          <a class="mdl-navigation__link " href="">
-    <span class="gfg-icon leftbar-icon gfg-icon_articles"></span>Articles
-  </a>
-  <a class="mdl-navigation__link" href="">
-      <i class="material-icons leftbar-icon" role="presentation">assignment_turned_in</i>Testimonial
-  </a>
-  <a class="mdl-navigation__link" href="">
-      <i class="material-icons leftbar-icon" role="presentation">school</i>Institutions
-  </a>
-  <a class="mdl-navigation__link" href="">
-      <i class="material-icons leftbar-icon" role="presentation">location_city</i>Organizations
-  </a>
-  <a class="mdl-navigation__link" href="">
-      <i class="material-icons leftbar-icon" role="presentation">how_to_reg</i>Campus Ambassadors
-  </a>
-  <a class="mdl-navigation__link" href="">
-    <span class="gfg-icon leftbar-icon gfg-icon_invite"></span>Invite
-  </a>
-              <a class="mdl-navigation__link" href="">
-      <span class="gfg-icon leftbar-icon gfg-icon_edit"></span>Edit Profile
-    </a>
-    <a class="mdl-navigation__link" href="">
-      <i class="material-icons leftbar-icon" role="presentation">settings</i>Account Settings
-    </a>
-    
-  <div class="mdl-layout-spacer"></div>
 
-                <a class="mdl-navigation__link" href="/logout.php">
-        <span class="gfg-icon leftbar-icon gfg-icon_logout"></span>Logout nizamyuseri?
-      </a>
+       
           </nav>
   </div>
   <main class="mdl-layout__content">
@@ -958,6 +829,17 @@ if (distance < 0) {
               font-size: 16px;
               max-width: 90%;
       }
+      .float-container {
+    border: 3px solid #fff;
+    padding: 20px;
+}
+
+.float-child {
+    width: 50%;
+    float: left;
+    padding: 20px;
+    border: 2px solid #55d6aa;
+}  
       @media only screen and (max-width: 768px) {
         .following {
           display:none;
@@ -973,9 +855,54 @@ if (distance < 0) {
       }
   </style>
   <div><b id="allow" style="font-size:20px">please allow access to camera and mic and refresh this page to begin the exam</b></div>
-  <center><h3>Please stay in the fullscreen mode or will be disqualified for this exam</h3></center>
-  <button id="go-button">Click here to enable Full Screen</button>
+  
+
+  
+  <div style="width:45%;margin:10px" class="float-child demo-card-square mdl-card mdl-shadow--2dp">
+
+    <div class="mdl-card__title mdl-card--expand featured">
+      <p class=" feedTitle" >
+      name: Mohamad Nizam bin Mohd Yuseri<br>
+      Student ID: 263978<br>
+      Email: nizam.yuseri@gmail.com<br>
+      Mobile No.:0123456789<br>
+      </p>
+    </div>
+  </div>
+  <p id="violate" style="display:none">lol</p>
+  <div style="width:45%;height:500px;margin:10px" class="float-child demo-card-square mdl-card mdl-shadow--2dp">
+    <tr><td>
+    <div class="mdl-card__title mdl-card--expand featured">
+    <p class=" feedTitle" style = "font-family:robotto,garamond,serif;font-size:16px;" >
+      Instructions:<br>
+      1. Please stay in the fullscreen while examination is in progress or you will be disqualified<br>
+      2. A working microphone and camera atached to your computer is required in order to answer the exam<br>
+      3. Please always allow access to your microphone and camera while examination is in progress<br>
+      4. Dont switch to other window or you will be disqualified<br>
+      
+    </p>
+    <div class="mdl-card__supporting-text excerpt">
+    </div>
+    </div>
+    <button valign="bottom" id="go-button">Attempt exam</button>
+  </div>
+
+    
   <div id="element" style="display:none">
+    <header>
+      
+    <div class="container" >
+      <nav style="height:70px" >
+        <ul>
+          <li><p id="my_msg"></p></li>
+          <li><b style="font-size:15px;" id="hack">Hackathon Exam A001</b></li>
+          <li><b style="font-size:15px;" id="proc">Proctoring Ongoing</b></li>
+          <li><p id="demo"></p></li>
+          <li><button class="btn btn-primary" id="hand">Hand in</button></li>
+        </ul>
+      </nav>
+    </div>
+    </header>
   <div class="mdl-grid"><div  class="mdl-cell mdl-cell--1-offset-desktop mdl-cell--6-col">
   <div class="demo-card-square mdl-card mdl-shadow--2dp">
 <div class="mdl-card__title mdl-card--expand featured">
@@ -1188,7 +1115,7 @@ $(window).resize(function(){
         firebase.initializeApp(firebaseConfig);
         var firestore = firebase.firestore();
       const snapshots = firestore.doc("snapshots/nizam");
-
+      
       function reload(){
         var refresh=1000; // Refresh rate in milli seconds
         mytime=setTimeout('display_msg()',refresh)
@@ -1203,18 +1130,23 @@ $(window).resize(function(){
         /* Get into full screen */
     function GoInFullscreen(element) {
       if(element.requestFullscreen){
+        isfullscreen = false;
         element.requestFullscreen();
-      }else if(element.mozRequestFullScreen)
-        element.mozRequestFullScreen();
-      else if(element.webkitRequestFullscreen)
-        element.webkitRequestFullscreen();
-      else if(element.msRequestFullscreen)
-        element.msRequestFullscreen();
+      }else if(element.mozRequestFullScreen){
+      isfullscreen = true;
+        element.mozRequestFullScreen();}
+      else if(element.webkitRequestFullscreen){
+      isfullscreen = true;
+        element.webkitRequestFullscreen();}
+      else if(element.msRequestFullscreen){
+      isfullscreen = true;
+        element.msRequestFullscreen();}
     }
     
     /* Get out of full screen */
     function GoOutFullscreen() {
       if(document.exitFullscreen){
+        isfullscreen = false;
         document.exitFullscreen();}
       else if(document.mozCancelFullScreen)
         document.mozCancelFullScreen();
@@ -1227,6 +1159,7 @@ $(window).resize(function(){
     /* Is currently in full screen or not */
     function IsFullScreenCurrently() {
       var full_screen_element = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement || null;
+    
       
       // If no element is in full-screen
       if(full_screen_element === null){
@@ -1459,16 +1392,18 @@ else
     for(n=0;n < x.length;n++){
     x[n].style.display = "none";
     }
-    document.getElementById("my_msg").innerHTML = "You have violated the exam rules more than 5 times you have been disqualified"
+    document.getElementById("violate").innerHTML = "You have violated the exam rules more than 5 secs you have been disqualified";
+    document.getElementById("violate").style.display = "";
     document.getElementById("my_msg").style.display = "block";
     document.getElementById("hand").style.display = "none";
     window.stop();
     
   } else {
+  if(isfullscreen == true){
   alert("Please stay in this exam window or you will get disqualified\nViolations count: "+violation);
   document.getElementById('my_msg').style.backgroundColor = "#f07814";
   document.getElementById('my_msg').innerHTML = "This web page is NOT in Focus";
-
+  }
   }
 }
 reload();
