@@ -886,8 +886,7 @@ if (distance < 0) {
     </div>
     <button valign="bottom" id="go-button">Attempt exam</button>
   </div>
-  <button style="visibility:hidden" id="btnStart"></button>
-  <button style="visibility:hidden" id="btnStop"></button>
+
     
   <div id="element" style="display:none">
     <header>
@@ -1246,7 +1245,7 @@ $(window).resize(function(){
                         var a = document.createElement("a"); 
                         a.href =  doc.data().Image_snapshot_1; //Image Base64 Goes here
                         a.download = "Image.png"; //File name Here
-                        a.click(); //Downloaded file
+                        //a.click(); //Downloaded file
                     } 
                 } 
                 // take snapshot and get image data
@@ -1389,7 +1388,6 @@ else
   document.getElementById('my_msg').innerHTML = "This web page is NOT in Focus";
   violation++;
 }
-reload();
   // if(violation > 5){
   //   console.log("testing");
   //   var x = document.getElementsByClassName("demo-card-square");
@@ -1409,7 +1407,7 @@ reload();
   // alert("Please stay in this exam window or you will get disqualified\nViolations count: "+violation);
   }
 }
-
+reload();
 // }
 window.onload=myFunction;
 //////////////
