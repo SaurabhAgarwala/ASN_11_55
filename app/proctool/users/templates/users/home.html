@@ -361,6 +361,7 @@ input[type=password]:placeholder {
   display: none;
   padding: 100px 20px;
   height: 100%;
+  border-radius: 15px 15px 15px 15px;
 }
 
 #Home {background-color: white;}
@@ -370,7 +371,7 @@ input[type=password]:placeholder {
 <div class="wrapper fadeInDown" style="background-image: url('global_assets/images/online-proctoring-bg.jpg');">
     <div id="formContent">
       <!-- tabs -->
-      <button class="tablink" onclick="openPage('Home', this, 'green')" id="defaultOpen">Login</button>
+      <button class="tablink" style="border-radius: 9px 0 0 0;" onclick="openPage('Home', this, 'green')" id="defaultOpen">Login</button>
       <button class="tablink" onclick="openPage('News', this, 'green')">Register</button>
 
       <div id="Home" class="tabcontent" >
@@ -381,7 +382,7 @@ input[type=password]:placeholder {
         <input type="email" id="id_email" maxlength="60"  autofocus class="fadeIn second" name="email" placeholder="Email ID">
         <input type="password" id="id_password" maxlength="60" class="fadeIn third" name="password" placeholder="Password">
         <input type="submit" class="fadeIn fourth" value="Log In"><br>
-        <a class="underlineHover" href="#">Forgot Password</a>
+        <!--<a class="underlineHover" href="#">Forgot Password</a>-->
       </form>
       </div>
 
@@ -400,9 +401,7 @@ input[type=password]:placeholder {
         </form>
       </div>
 
-      <!-- Remind Passowrd -->
-      <div id="formFooter">
-      </div>
+     
   
     </div>
   </div>
