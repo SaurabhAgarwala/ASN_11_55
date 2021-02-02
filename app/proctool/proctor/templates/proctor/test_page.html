@@ -63,29 +63,9 @@ nav li {
   position: relative;
 }
 
-nav a {
-  color: #444;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-size: 14px;
-}
 
-nav a:hover {
-  color: #000;
-}
 
-nav a::before {
-  content: '';
-  display: block;
-  height: 5px;
-  background-color: #444;
 
-  position: absolute;
-  top: 0;
-  width: 0%;
-
-  transition: all ease-in-out 250ms;
-}
 
 nav a:hover::before {
   width: 100%;
@@ -386,11 +366,12 @@ cursor: pointer;
   <div class="container" style="float: left;margin-left:0px;width:100%;height:70px"  >
     <nav style="float: left;margin-left:0px;width:100%">
     <ul style="float: left;margin-left:0px;width:100%">
+      
+      <a href="/users/logout"><button type="button" class="btn btn-danger" style="height:40px;float: right;margin-top:10px;margin:10px"><p style = "font-family:roboto,garamond,serif;font-size:10px;">Logout</p></button></a>
       <li style="margin-left:0px"><img style="width:60px;height:60px;margin-top:4px;margin-right:0px" src="https://i.ibb.co/sPS5YM5/Hack-logo.png"/></li>
       <li style="margin-left:0px;"><p style="font-family:roboto,garamond,serif;font-size:25px;"></li>
-      <li style="float: right;margin-top:4px;margin-right:0px"><p id="my_msg" style="margin-top:14px;float: right;"></p></li>
+      <li style="float: right;margin-top:4px;margin-right:0px"><p id="my_msg" style="margin-top:14px;float: right;margin-left: 5px;"></p></li>
       <li style="float: right;margin-top:4px;margin-right:0px;text-align:center;"><b style = "text-align:center;font-family:roboto,garamond,serif;font-size:18px;margin-top:14px;float: right;" id="hack">Hackathon Exam</b></li>
-      
       <li>
     </ul>
   </nav>
@@ -702,7 +683,7 @@ footer {
 
     <div class="mdl-card__title mdl-card--expand featured">
       <center><h1>Candidate Details</h1>
-      <img style="height:150px;width:150px" src="http://raivens.com/wp-content/uploads/2016/08/Dummy-image.jpg"/>
+      <img style="height:150px;width:150px" src="http://raivens.com/hackathon examwp-content/uploads/2016/08/Dummy-image.jpg"/>
       <br><br>
      <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Name: Mohamad Nizam bin Mohd Yuseri</p></text>
      <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Student ID: 263978</p></text>
@@ -1268,7 +1249,7 @@ $(window).resize(function(){
 function display_msg() {
 if (document.hasFocus() == true) {
   document.getElementById('my_msg').style.backgroundColor = "#00f000";
-  document.getElementById('my_msg').innerHTML = "<p style = 'font-family:roboto,garamond,serif;font-size:18px;' >This exam window is in Focus</p>";
+  document.getElementById('my_msg').innerHTML = "<p style = 'font-family:roboto,garamond,serif;font-size:18px;margin-left:5px' >This exam window is in Focus</p>";
 }
 else
 {
