@@ -933,32 +933,7 @@ gtag('config', 'UA-112208093-1');
     $('.imageFile').click();
   });
 
-//to make footer sticky to bottom when it goes up.                                  
-$(document).ready(function(){
-  (function(){
-      if($(window).width() > 768){
-        if($(window).height() - ( $('footer').offset().top + $('footer').height() ) > 0){
-          var wh = ($(window).width() - $('.mdl-layout__drawer').width()).toString()+'px';
-          $('footer').css({'position':'fixed', 'width':wh, 'bottom':'0'});        
-        }
-      }
-  })();
-});
 
-var origWidth = $(window).width();
-$(window).resize(function(){                                                        
-  var tempWidth = $(window).width();
-  if($(window).width() < 1024 || tempWidth == origWidth){                                                   
-    $('footer').css({'position':'relative', 'width':'auto', 'bottom':'auto'});  
-  }
-  else{                                                                           
-    var wh = ($(window).width() - $('.mdl-layout__drawer').width()).toString()+'px';
-    if($(window).height() - ( $('footer').offset().top + $('footer').height() )){
-        $('footer').css({'position':'fixed', 'bottom':'0'});                    
-    }                                                                           
-    $('footer').css('width',wh);                                                
-  }
-});
 
 </script>
     <div class="dialog-div" style="display: none;width: 100vw;height: 100vh;background-color: rgba(204,204,204,0.6);position: fixed;top: 0;z-index: 10;">
