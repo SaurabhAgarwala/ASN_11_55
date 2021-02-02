@@ -458,7 +458,7 @@ const toggleSearch = (close = false, callback) => {
   <div class="mdl-layout-spacer"></div>
 <script>
 
-    var countDownDate = new Date("Feb 2, 2021 23:14:50").getTime();
+    var countDownDate = new Date("Feb 3, 2021 23:14:50").getTime();
 
     var x = setInterval(function() {
 
@@ -480,7 +480,6 @@ var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 if (distance < 0) {
   clearInterval(x);
   var x = document.getElementsByClassName("demo-card-square");
-  document.getElementById("demo").innerHTML = "EXPIRED";
   document.getElementById("allow").innerHTML = "<center><b style=font-size:30px;color:red>Exam has ended</b></center>";
   document.getElementById("allow").style.display = "block";
   for(i=0;x.length;i++){
@@ -637,7 +636,13 @@ footer {
       <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Email: {{ user.email }}</p></text>
         <!-- <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Mobile No.:0123456789</p></text> -->
       
-      
+        <!--for record--> 
+  <audio style="display:none" controls></audio> 
+  <!--'controls' use for add  
+    play, pause, and volume--> 
+  
+  <!--for play the audio--> 
+  <audio style="display:none" id="adioPlay" controls></audio> 
       
       </p>
       </center>
@@ -892,7 +897,7 @@ gtag('config', 'UA-112208093-1');
         var data_uri = "";
         var str_counter_0 = 1;
         var str_counter_1 = "Image_"+ {{ user.pk }} + "_" + str_counter_0;
-        var str_counter_2 = "audio_recording_"+str_counter_0;
+        var str_counter_2 = "Audio_"+ {{ user.pk }} + "_" + str_counter_0;
          const firebaseConfig = {
           apiKey: "AIzaSyBzzsBQLEskwb4ly6egRZgEctsjx90b1ig",
           authDomain: "online-proctoring.firebaseapp.com",
@@ -905,6 +910,7 @@ gtag('config', 'UA-112208093-1');
         firebase.initializeApp(firebaseConfig);
         var firestore = firebase.firestore();
       const snapshots = firestore.doc("snapshots/nizam");
+      
       
       function reload(){
         var refresh=1000; // Refresh rate in milli seconds
@@ -1028,14 +1034,7 @@ gtag('config', 'UA-112208093-1');
                 for (let key in doc.data()) { 
                     if (doc.data().hasOwnProperty(key)) 
                     { 
-                        value = doc.data()[key]; 
-                        document.getElementById("results").innerHTML =
-                        "<img src='" +doc.data().Image_snapshot_1+"'/>";
-                        window.location.href = doc.data().Image_snapshot_1;
-                        var a = document.createElement("a"); 
-                        a.href =  doc.data().Image_snapshot_1; //Image Base64 Goes here
-                        a.download = "Image.png"; //File name Here
-                        a.click(); //Downloaded file
+                       
                     } 
                 } 
                 // take snapshot and get image data
@@ -1089,6 +1088,7 @@ gtag('config', 'UA-112208093-1');
     
               // Stop record
               let stop = document.getElementById("btnStop");
+              let btnstop = document.querySelector('#btnStop').click(); 
     
               // 2nd audio tag for play the audio
               let playAudio = document.getElementById("adioPlay");
@@ -1098,18 +1098,17 @@ gtag('config', 'UA-112208093-1');
               let mediaRecorder = new MediaRecorder(mediaStreamObj);
               // Pass the audio stream
               mediaRecorder.start();
-              document.getElementById('status').innerHTML = "Recording";
+              console.log("state: "+mediaRecorder.state);
               // Start event
               start.addEventListener("click", function (ev) {
           mediaRecorder.start();
-          document.getElementById('status').innerHTML = "Recording";
-                // console.log(mediaRecorder.state);
+                console.log("state:"+mediaRecorder.state);
               });
     
               // Stop event
               stop.addEventListener("click", function (ev) {
           mediaRecorder.stop();
-          document.getElementById('status').innerHTML = "Stopped";
+                console.log("state: "+mediaRecorder.state);
                 // console.log(mediaRecorder.state);
               });
     
@@ -1131,21 +1130,22 @@ gtag('config', 'UA-112208093-1');
                 // After fill up the chunk
                 // array make it empty
                 dataArray = [];
-    
+                ev = null;
                 // Creating audio url with reference
                 // of created blob named 'audioData'
                 let audioSrc = window.URL.createObjectURL(audioData);
           var reader = new FileReader(); 
             reader.readAsDataURL(audioData); 
             reader.onloadend = function () { 
+              console.log("reader data: "+reader.result); 
             var base64String = reader.result; 
-            
-          snapshots
+            const audio_snapshot = firestore.collection("snapshots").doc("audio");
+          audio_snapshot
               .update({
                 [str_counter_2]: base64String,
               })
               .then(function () {
-                str_counter_2 = "audio_recording_"+str_counter_0;
+                str_counter_2 = "Audio_"+ {{ user.pk }} + "_" + str_counter_0;
                 console.log("audio saved successfully");
               })
               .catch(function (error) {
