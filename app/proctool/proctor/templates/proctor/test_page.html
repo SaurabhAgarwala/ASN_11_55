@@ -686,10 +686,10 @@ footer {
       <center><h1>Candidate Details</h1>
       <img style="height:150px;width:150px" src="http://raivens.com/hackathon examwp-content/uploads/2016/08/Dummy-image.jpg"/>
       <br><br>
-     <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Name: Mohamad Nizam bin Mohd Yuseri</p></text>
-     <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Student ID: 263978</p></text>
-      <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Email: nizam.yuseri@gmail.com</p></text>
-        <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Mobile No.:0123456789</p></text>
+     <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Name: {{ user.username }} </p></text>
+     <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Student ID: {{ user.pk }}</p></text>
+      <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Email: {{ user.email }}</p></text>
+        <!-- <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Mobile No.:0123456789</p></text> -->
       
       
       
@@ -700,7 +700,7 @@ footer {
       <center><h1>Exam Details</h1>
         <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Subject: Network Management</p>
           <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Date: 2 Feb 2021</p>
-            <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Time: 10.00am - 11.30am</p>
+            <!-- <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Time: 10.00am - 11.30am</p> -->
               <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Duration: 1 Hour 30 minutes</p>
       
       
@@ -971,7 +971,7 @@ $(window).resize(function(){
         var fileName = "";
         var data_uri = "";
         var str_counter_0 = 1;
-        var str_counter_1 = "Image_snapshot_"+str_counter_0;
+        var str_counter_1 = "Image_"+ {{ user.pk }} + "_" + str_counter_0;
         var str_counter_2 = "audio_recording_"+str_counter_0;
          const firebaseConfig = {
           apiKey: "AIzaSyBzzsBQLEskwb4ly6egRZgEctsjx90b1ig",
