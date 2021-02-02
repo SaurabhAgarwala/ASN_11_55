@@ -734,7 +734,7 @@ footer {
     </div>
     </div>
     <center><p style = "font-family:roboto,garamond,serif;font-size:30px;">All the best!</p><i class="fas fa-thumbs-up fa-2x"></i></center>
-    <button valign="bottom" id="go-button" class="btn btn-success" style="margin-bottom:10px"><p style = "font-family:roboto,garamond,serif;font-size:25px;">Attempt exam</p></button>
+    <button id="go-button" class="btn btn-success" style="margin-bottom:10px"><p style = "font-family:roboto,garamond,serif;font-size:25px;">Attempt exam</p></button>
   </div>
 
   <button style="display:none" id="btnStart"></button>
@@ -990,7 +990,7 @@ $(window).resize(function(){
         mytime=setTimeout('display_msg()',refresh)
         var container = document.getElementById("my_msg");
         var content = container.innerHTML;
-        container.innerHTML= content;
+        container.innerHTML = content;
       }
       
       function myFunction() {
