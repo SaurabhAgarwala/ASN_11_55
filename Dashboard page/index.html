@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Sidebar Dashboard Template</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+  </head>
+  <body>
+
+    <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+      <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
+      <div class="left_area">
+        <img src="images/Logo.jpeg">
+        <h3> &nbsp Proc Exam &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Welcome To Online Examination             
+        </h3>
+      </div>
+    </header>
+    <!--header area end-->
+    <!--mobile navigation bar start-->
+    <div class="mobile_nav">
+      <div class="nav_bar">
+        <img src="Images/Logo.jpeg" class="mobile_profile_image" alt="">
+        <i class="fa fa-bars nav_btn"></i>
+      </div>
+      <div class="mobile_nav_items">
+        <a href="#"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+        <a href="#"><i class="fas fa-sign-out-alt"></i><span>Sign out</span></a>
+      </div>
+    </div>
+    <!--mobile navigation bar end-->
+    <!--sidebar start-->
+    <div class="sidebar">
+    
+      <a href="#"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+      <a href="#"><i class="fas fa-sign-out-alt"></i><span>Sign out</span></a>
+    </div>
+    <!--sidebar end-->
+    <!-- Main content table start -->
+    <div class="content">
+        <div class="card">
+            <h2>All Users Violations Display</h2>
+        </div>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Candidate ID</th>
+                    <th>Multiple Person Detected</th>
+                    <th>Left Full Screen</th>
+                    <th>Left Exam Page</th>
+                    <th>Looking Away from Screen</th>
+                    <th>Face Authentication Failed</th>
+                    <th>Other Gadgets Detected</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2021-02-31 05:57</td>
+                    <td>103998</td>
+                    <td>1</td>
+                    <td>3</td>
+                    <td>0</td>
+                    <td>3</td>
+                    <td>5</td>
+                    <td>7</td>
+                </tr>
+                <tr>
+                    <td>2021-02-31 05:57</td>
+                    <td>103998</td>
+                    <td>1</td>
+                    <td>3</td>
+                    <td>0</td>
+                    <td>3</td>
+                    <td>5</td>
+                    <td>7</td>
+                </tr>
+                <!-- and so on... -->
+            </tbody>
+        </table>
+      </div>
+    <!-- Main content table part end -->                                               
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $('.nav_btn').click(function(){
+        $('.mobile_nav_items').toggleClass('active');
+      });
+    });
+    </script>
+
+  </body>
+</html>
+      
