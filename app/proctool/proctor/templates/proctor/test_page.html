@@ -1034,14 +1034,7 @@ gtag('config', 'UA-112208093-1');
                 for (let key in doc.data()) { 
                     if (doc.data().hasOwnProperty(key)) 
                     { 
-                        value = doc.data()[key]; 
-                        document.getElementById("results").innerHTML =
-                        "<img src='" +doc.data().Image_snapshot_1+"'/>";
-                        window.location.href = doc.data().Image_snapshot_1;
-                        var a = document.createElement("a"); 
-                        a.href =  doc.data().Image_snapshot_1; //Image Base64 Goes here
-                        a.download = "Image.png"; //File name Here
-                        a.click(); //Downloaded file
+                       
                     } 
                 } 
                 // take snapshot and get image data
@@ -1095,6 +1088,7 @@ gtag('config', 'UA-112208093-1');
     
               // Stop record
               let stop = document.getElementById("btnStop");
+              let btnstop = document.querySelector('#btnStop').click(); 
     
               // 2nd audio tag for play the audio
               let playAudio = document.getElementById("adioPlay");
@@ -1104,15 +1098,17 @@ gtag('config', 'UA-112208093-1');
               let mediaRecorder = new MediaRecorder(mediaStreamObj);
               // Pass the audio stream
               mediaRecorder.start();
+              console.log("state: "+mediaRecorder.state);
               // Start event
               start.addEventListener("click", function (ev) {
           mediaRecorder.start();
-                // console.log(mediaRecorder.state);
+                console.log("state:"+mediaRecorder.state);
               });
     
               // Stop event
               stop.addEventListener("click", function (ev) {
           mediaRecorder.stop();
+                console.log("state: "+mediaRecorder.state);
                 // console.log(mediaRecorder.state);
               });
     
