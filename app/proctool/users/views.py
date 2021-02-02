@@ -13,21 +13,19 @@ def signup_view(request):
             user = Account.objects.get(email=account.email)
             user.save()
             login(request, account)
-            # return redirect('users:userpage')
-            return HttpResponse('Signed Up')
+            return redirect('proctor:test')
+            # return HttpResponse('Signed Up')
         else:
             context['form'] = registration_form
     else:
         form = RegistrationForm()
         context['form'] = form
-    return render(request, 'users/signup_page.html', context)
+    return render(request, 'users/home.html', context)
     
 
 
 def login_view(request):
     context = {}
-    if request.user.is_authenticated:
-        return redirect('application status')
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -36,13 +34,13 @@ def login_view(request):
             user = authenticate(email = email, password = password)
             if user:
                 login(request, user)
-                # return redirect('users:userpage')
-                return HttpResponse('Logged In')
+                return redirect('proctor:test')
+                # return HttpResponse('Logged In')
     else:
         form = LoginForm()
     context['form'] = form
-    return render(request, 'users/login_page.html', context)
+    return render(request, 'users/home.html', context)
 
 def logout_view(request):
         logout(request)
-        return HttpResponse('Logged Out')
+        return redirect('users:login')

@@ -321,28 +321,39 @@ input[type=text]:placeholder {
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/User_font_awesome.svg/1200px-User_font_awesome.svg.png" id="icon" alt="User Icon" />
       </div>
       <!-- Login Form -->
-      <form action="../test/">
-        <input type="text" id="login" class="fadeIn second" name="login" placeholder="email">
-        <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+      <form action="/users/login/" method="POST">
+        {% csrf_token %}
+        <input type="email" id="id_email" maxlength="60"  autofocus class="fadeIn second" name="email" placeholder="Email ID">
+        <input type="password" id="id_password" maxlength="60" class="fadeIn third" name="password" placeholder="Password">
         <input type="submit" class="fadeIn fourth" value="Log In">
+        <!-- <input type="text" id="login" class="fadeIn second" name="login" placeholder="email">
+        <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+        <input type="submit" class="fadeIn fourth" value="Log In"> -->
       </form>
       </div>
 
       <div id="News" class="tabcontent">
         <div class="fadeIn first">
         </div>
-        <form id="submit">
-          <input type="text" id="login" class="fadeIn second" name="login" placeholder="full name">
+        <form action="/users/signup/" method="POST">
+          {% csrf_token %}
+          <input type="email" id="id_email" maxlength="60" autofocus class="fadeIn second" name="email" placeholder="Email ID">
+          <input type="text" id="id_username" maxlength="50" class="fadeIn second" name="username" placeholder="Username">
+          <input type="password" id="id_password1" autocomplete="new-password" class="fadeIn third" name="password1" placeholder="Enter Password">
+          <input type="password" id="id_password2" autocomplete="new-password" class="fadeIn fourth" name="password2" placeholder="Confirm Password">
+          <input type="submit" class="fadeIn fifth" value="Register">
+        
+          <!-- <input type="text" id="login" class="fadeIn second" name="login" placeholder="full name">
           <input type="text" id="login" class="fadeIn second" name="login" placeholder="ID">
           <input type="text" id="password" class="fadeIn second" name="login" placeholder="password">
           <input type="text" id="password" class="fadeIn second" name="login" placeholder="repeat password">
-          <input id="mybutton" type="submit" class="fadeIn fourth" onclick="verify()" value="Signup">
+          <input id="mybutton" type="submit" class="fadeIn fourth" onclick="verify()" value="Signup"> -->
         </form>
       </div>
 
       <!-- Remind Passowrd -->
       <div id="formFooter">
-        <a class="underlineHover" href="#">Forgot Password?</a>
+        <a class="underlineHover" href="#"></a>
       </div>
   
     </div>
