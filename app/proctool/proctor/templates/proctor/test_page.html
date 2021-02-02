@@ -390,7 +390,7 @@ cursor: pointer;
       <li style="margin-left:0px;"><p style="font-family:roboto,garamond,serif;font-size:25px;"><i>ProcExam</i></p></li>
       <li style="float: right;margin-top:4px;margin-right:0px"><p id="my_msg" style="margin-top:14px;float: right;"></p></li>
       <li style="float: right;margin-top:4px;margin-right:0px;text-align:center;"><b style = "text-align:center;font-family:roboto,garamond,serif;font-size:18px;margin-top:14px;float: right;" id="hack">Hackathon Exam</b></li>
-      <li style="float: right;margin-top:4px;margin-right:0px"><p id="demo" style="display:none;margin-top:14px;float: right;"></p></li>
+      
       <li>
     </ul>
   </nav>
@@ -562,17 +562,17 @@ if (distance < 0) {
   document.getElementById("hand").style.display = "block";
 } else {
   // Display the result in the element with id="demo"
-  document.getElementById("proc").style.display = "block";
+  console.log("test "+hours + "h "
+  + minutes + "m " + seconds + "s ");
   document.getElementById("hack").style.display = "block";
-  document.getElementById("hand").style.display = "block";
   document.getElementById("allow").style.display = "none";
-  document.getElementById("demo").innerHTML = hours + "h "
+  document.getElementById("timeleft").innerHTML = hours + "h "
   + minutes + "m " + seconds + "s ";
   console.log(distance);
   if(distance < 600173){
-  document.getElementById("demo").style.color = "red";
+  document.getElementById("timeleft").style.color = "red";
   } else{
-  document.getElementById("demo").style.color = "blue";
+  document.getElementById("timeleft").style.color = "blue";
   }
 }
 }, 1000);
@@ -760,7 +760,7 @@ footer {
           <li style="float: right;margin-top:4px;margin-right:0px"><p id="my_msg" style="margin-top:14px;float: right;"></p></li>
           <li style="float: right;margin-top:4px;margin-right:0px"><b style = "font-family:roboto,garamond,serif;font-size:18px;margin-top:14px;float: right;" id="hack">Hackathon Exam</b></li>
           <li style="float: right;margin-top:4px;margin-right:0px"><b style = "font-family:roboto,garamond,serif;font-size:18px;margin-top:14px;float: right;" id="hack">Proctoring ongoing</b></li>
-          <li style="float: right;margin-top:4px;margin-right:0px"><p id="demo" style="display:none;margin-top:14px;float: right;"></p></li>
+          <li style="float: right;margin-top:4px;margin-right:0px"><p id="timeleft" style="margin-top:14px;float: right;">test</p></li>
           <li>
         </ul>
       </nav>
