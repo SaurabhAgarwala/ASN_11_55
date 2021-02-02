@@ -390,7 +390,7 @@ cursor: pointer;
       <li style="margin-left:0px;"><p style="font-family:roboto,garamond,serif;font-size:25px;"><i>ProcExam</i></p></li>
       <li style="float: right;margin-top:4px;margin-right:0px"><p id="my_msg" style="margin-top:14px;float: right;"></p></li>
       <li style="float: right;margin-top:4px;margin-right:0px;text-align:center;"><b style = "text-align:center;font-family:roboto,garamond,serif;font-size:18px;margin-top:14px;float: right;" id="hack">Hackathon Exam</b></li>
-      <li style="float: right;margin-top:4px;margin-right:0px"><p id="demo" style="display:none;margin-top:14px;float: right;"></p></li>
+      
       <li>
     </ul>
   </nav>
@@ -499,104 +499,6 @@ const displayModalHandlers = {
   }
 }
 
-const gcseCustomSearch = (params = {}) => {
-  let query = jQuery.trim(jQuery("#gcse-form input").val())
-  let sort = jQuery.trim(jQuery("#displayModal .gcse-sort").val()) || ""
-
-  if (query) {
-      displayModal("", "google-search")
-      jQuery("#displayModal .modal-content").attr("data-type", "gcse")
-      jQuery("#displayModal .modal-overlay").attr("aria-hidden", false)
-      const render = (o, i) => {
-          let image = o.pagemap['cse_thumbnail'] && o.pagemap['cse_thumbnail'].length ?
-              o.pagemap['cse_thumbnail'][0]['src'] :
-              o.pagemap['cse_image'] && o.pagemap['cse_image'].length ? o.pagemap['cse_image'][0]['src'] :
-                  o.pagemap['metatags'] && o.pagemap['metatags'].length ? o.pagemap['metatags'][0]['og:image'] : "";
-
-          return `<div class="gcse-item">
-          <div class="gcse-title">
-              <a href="${o.link}">${o.htmlTitle}</a>
-          </div>
-          <div>
-              <a href="${o.link}">${o.htmlFormattedUrl}</a>
-          </div>
-          <div class="gcse-item-content">
-              <a href="${o.link}">
-              <img src="${image}"/>
-              </a>  
-              <div class="gcse-item-info">
-              ${o.snippet}
-              </div>
-          </div>
-          </div>`
-      }
-      query = escape(query)
-      // set according to domain requirement either premium, practice, contribute and so, add API ke on util also
-      let gcseSubdomain = "auth";
-      jQuery.ajax({
-          type: "GET",
-          url: `${apiUrl}api\/googlesearch\/${query}\/${params.page ? params.page : 1}\/${sort ? sort : "relevance"}\/${gcseSubdomain}`,
-          success: function (response) {
-              let data = JSON.parse(response)
-              if (data.response.error) {
-                  displayModalHandlers.setBody(`<div class="gcse-results-wrapper">Some error occurred.</div>`)
-                  displayModalHandlers.setErrorMessage(data.response.error.message)
-                  return;
-              }
-              if (data.status === 200) {
-                  let pagination = ""
-                  let template = []
-                  if (data.response.items) {
-                      template = data.response.items.map((o, i) => {
-                          return render(o, i)
-                      })
-                      if (data.response.searchInformation.totalResults > 10) {
-                          let totalCount = data.response.searchInformation.totalResults
-                          for (let index = 1; index <= Math.min(10, Math.ceil(totalCount / 10)); index++) {
-                              pagination += `<a href="javascript:void(0)" onclick="gcseCustomSearch({ page : ${index}})">${index}</a>`
-                          }
-                      }
-                  }
-                  displayModalHandlers.setBody(`
-                  <div class="gcse-meta-wrapper">
-                      <div class="gcse-search-info">About ${data.response.searchInformation.formattedTotalResults} results (${data.response.searchInformation.formattedSearchTime} seconds)</div>
-                      <div class="gcse-sort-wrapper">
-                      <div class="gcse-sort-container">
-                          <span class="gcse-sort-label">Sort By: </span>
-                          <select onchange="gcseCustomSearch()" class="gcse-sort">
-                          <option selected value="relevance">Relevance</option>
-                          <option value="date">Date</option>
-                          </select>
-                      </div>
-                      </div>
-                  </div>
-                  <hr class="gcse-divider">
-                  <div class="gcse-results-wrapper">
-                      ${template.join("") || "No Result Found."}
-                  </div>
-                  <div class="gcse-pagination">
-                      ${pagination}
-                  </div>
-                  `)
-                  jQuery("#displayModal .gcse-sort").val(sort ? sort : "relevance")
-              } else {
-                  displayModalHandlers.setBody("")
-                  console.log("Some error occurred, ", data.message, data.status)
-              }
-          },
-          error: function () {
-              displayModalHandlers.setBody("")
-          },
-          complete: function () {
-              displayModal("", "google-search")
-              jQuery("#displayModal .modal-content").attr("data-type", "gcse")
-              jQuery("#displayModal .modal-overlay").attr("aria-hidden", true)
-          }
-      })
-  }
-  return;
-}
-
 const displayModal = (e, type, subType = "") => {
 // e.preventDefault();
 jQuery("#displayModal .modal-content").removeAttr("data-type")
@@ -660,17 +562,17 @@ if (distance < 0) {
   document.getElementById("hand").style.display = "block";
 } else {
   // Display the result in the element with id="demo"
-  document.getElementById("proc").style.display = "block";
+  console.log("test "+hours + "h "
+  + minutes + "m " + seconds + "s ");
   document.getElementById("hack").style.display = "block";
-  document.getElementById("hand").style.display = "block";
   document.getElementById("allow").style.display = "none";
-  document.getElementById("demo").innerHTML = hours + "h "
+  document.getElementById("timeleft").innerHTML = hours + "h "
   + minutes + "m " + seconds + "s ";
   console.log(distance);
   if(distance < 600173){
-  document.getElementById("demo").style.color = "red";
+  document.getElementById("timeleft").style.color = "red";
   } else{
-  document.getElementById("demo").style.color = "blue";
+  document.getElementById("timeleft").style.color = "blue";
   }
 }
 }, 1000);
@@ -826,8 +728,10 @@ footer {
   <p id="violate" style="display:none"></p>
   <div style="width:50%;height:500px;margin:10px;height:790px;" class="float-child demo-card-square mdl-card mdl-shadow--2dp">
     <tr><td>
-    <div class="mdl-card__title mdl-card--expand featured">
-      <center><h2>Instructions:</h2>
+    <div class="mdl-card__title mdl-card--expand featured" style="
+    justify-content: center;
+    align-items: center;">
+      <center><h1>Instructions</h1></center>
     <p class=" feedTitle" style = "font-family:roboto,garamond,serif;font-size:35px;" >
       <ol style = "font-family:roboto,garamond,serif;font-size:30px;">
       <li><p style = "font-family:roboto,garamond,serif;font-size:30px;">Please stay in the fullscreen while examination is in progress or you will be disqualified</p></li>
@@ -835,7 +739,7 @@ footer {
       <li><p style = "font-family:roboto,garamond,serif;font-size:30px;">Please always allow access to your microphone and camera while examination is in progress</p></li>
       <li><p style = "font-family:roboto,garamond,serif;font-size:30px;">Dont switch to other window or you will be disqualified</p></li>
       
-    </p></center>
+    </p>
     <div class="mdl-card__supporting-text excerpt">
     </div>
     </div>
@@ -856,7 +760,7 @@ footer {
           <li style="float: right;margin-top:4px;margin-right:0px"><p id="my_msg" style="margin-top:14px;float: right;"></p></li>
           <li style="float: right;margin-top:4px;margin-right:0px"><b style = "font-family:roboto,garamond,serif;font-size:18px;margin-top:14px;float: right;" id="hack">Hackathon Exam</b></li>
           <li style="float: right;margin-top:4px;margin-right:0px"><b style = "font-family:roboto,garamond,serif;font-size:18px;margin-top:14px;float: right;" id="hack">Proctoring ongoing</b></li>
-          <li style="float: right;margin-top:4px;margin-right:0px"><p id="demo" style="display:none;margin-top:14px;float: right;"></p></li>
+          <li style="float: right;margin-top:4px;margin-right:0px"><p id="timeleft" style="margin-top:14px;float: right;">test</p></li>
           <li>
         </ul>
       </nav>
