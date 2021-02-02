@@ -383,20 +383,18 @@ cursor: pointer;
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
-  <div class="container"  >
-
-
-    <nav style="height:70px" >
-      <ul>
-        <li>    <img style="width:60px;height:60px;margin-top:4px" src="https://i.ibb.co/w7Wv8z1/Hack-logo.png"/></li>
-          <li><p style="text-align:left">Online Proctoring System</p></li>
-        <li><p id="my_msg"></p></li>
-        <li><b style = "font-family:roboto,garamond,serif;font-size:18px;" id="hack">Hackathon Exam</b></li>
-        <li><p id="demo" style="visibility:hidden"></p></li>
-        <li>
-        
-      </ul>
-    </nav>
+  <div class="container" style="float: left;margin-left:0px;width:100%;height:70px"  >
+    <nav style="float: left;margin-left:0px;width:100%">
+    <ul style="float: left;margin-left:0px;width:100%">
+      <li style="margin-left:0px"><img style="width:60px;height:60px;margin-top:4px;margin-right:0px" src="https://i.ibb.co/w7Wv8z1/Hack-logo.png"/></li>
+      <li style="margin-left:0px;"><p style="font-family:roboto,garamond,serif;font-size:25px;"><i>ProcExam</i></p></li>
+      <li style="float: right;margin-top:4px;margin-right:0px"><p id="my_msg" style="margin-top:14px;float: right;"></p></li>
+      <li style="float: right;margin-top:4px;margin-right:0px;text-align:center;"><b style = "text-align:center;font-family:roboto,garamond,serif;font-size:18px;margin-top:14px;float: right;" id="hack">Hackathon Exam</b></li>
+      <li style="float: right;margin-top:4px;margin-right:0px"><p id="demo" style="display:none;margin-top:14px;float: right;"></p></li>
+      <li>
+    </ul>
+  </nav>
+   
   </div>
   </header>
   <div class="mdl-layout-title mdl-grid--no-spacing" style="width:100%;position: fixed;" hidden >
@@ -829,7 +827,7 @@ footer {
   <div style="width:50%;height:500px;margin:10px;height:790px;" class="float-child demo-card-square mdl-card mdl-shadow--2dp">
     <tr><td>
     <div class="mdl-card__title mdl-card--expand featured">
-      <h2>Instructions:</h2>
+      <center><h2>Instructions:</h2>
     <p class=" feedTitle" style = "font-family:roboto,garamond,serif;font-size:35px;" >
       <ol style = "font-family:roboto,garamond,serif;font-size:30px;">
       <li><p style = "font-family:roboto,garamond,serif;font-size:30px;">Please stay in the fullscreen while examination is in progress or you will be disqualified</p></li>
@@ -837,7 +835,7 @@ footer {
       <li><p style = "font-family:roboto,garamond,serif;font-size:30px;">Please always allow access to your microphone and camera while examination is in progress</p></li>
       <li><p style = "font-family:roboto,garamond,serif;font-size:30px;">Dont switch to other window or you will be disqualified</p></li>
       
-    </p>
+    </p></center>
     <div class="mdl-card__supporting-text excerpt">
     </div>
     </div>
@@ -850,17 +848,20 @@ footer {
   
   <div id="element" style="display:none">
     <header>
-    <div class="container" >
-      <nav style="height:70px" >
-        <ul>
-          <li><p id="my_msg"></p></li>
-          <li><b style="font-size:15px;" id="hack">Hackathon Exam A001</b></li>
-          <li><b style="font-size:15px;" id="proc">Proctoring Ongoing</b></li>
-          <li><p id="demo"></p></li>
-          <li><button class="btn btn-primary" id="hand">Hand in</button></li>
+      <div class="container" style="float: left;margin-left:0px;width:100%;height:70px;margin-top:0px"  >
+        <nav style="float: left;margin-left:0px;width:100%">
+        <ul style="float: left;margin-left:0px;width:100%">
+          <li style="float: left;margin-left:0px"><img style="width:60px;height:60px;margin-top:4px;margin-right:0px" src="https://i.ibb.co/w7Wv8z1/Hack-logo.png"/></li>
+          <li style="float: left;margin-left:0px"><p style="font-family:roboto,garamond,serif;font-size:18px;margin-top:20px">Online Proctoring System</p></li>
+          <li style="float: right;margin-top:4px;margin-right:0px"><p id="my_msg" style="margin-top:14px;float: right;"></p></li>
+          <li style="float: right;margin-top:4px;margin-right:0px"><b style = "font-family:roboto,garamond,serif;font-size:18px;margin-top:14px;float: right;" id="hack">Hackathon Exam</b></li>
+          <li style="float: right;margin-top:4px;margin-right:0px"><b style = "font-family:roboto,garamond,serif;font-size:18px;margin-top:14px;float: right;" id="hack">Proctoring ongoing</b></li>
+          <li style="float: right;margin-top:4px;margin-right:0px"><p id="demo" style="display:none;margin-top:14px;float: right;"></p></li>
+          <li>
         </ul>
       </nav>
-    </div>
+       
+      </div>
     </header>
   <div class="mdl-grid"><div class="mdl-cell mdl-cell--1-offset-desktop mdl-cell--6-col">
   <div class="demo-card-square mdl-card mdl-shadow--2dp">
@@ -963,6 +964,10 @@ footer {
 </div>
 </div>
 </div>
+<footer style="width: 100%; bottom: 0px;">
+  <p style = "font-family:roboto,garamond,serif;font-size:18px;">Contact: (+60) 123456789(test admin)</p>
+    <p style = "font-family:roboto,garamond,serif;font-size:18px;"><a href="online@proctor.com">online@proctor.com</a></p>
+</footer> 
 </div>
 </div>
     
@@ -1328,12 +1333,12 @@ $(window).resize(function(){
 function display_msg() {
 if (document.hasFocus() == true) {
   document.getElementById('my_msg').style.backgroundColor = "#00f000";
-  document.getElementById('my_msg').innerHTML = "<p style = 'font-family:roboto,garamond,serif;font-size:18px;' >This web page is in Focus</p>";
+  document.getElementById('my_msg').innerHTML = "<p style = 'font-family:roboto,garamond,serif;font-size:18px;' >This exam window is in Focus</p>";
 }
 else
 {
   document.getElementById('my_msg').style.backgroundColor = "#f07814";
-  document.getElementById('my_msg').innerHTML = "<p style = 'font-family:roboto,garamond,serif;font-size:18px;' >This web page is NOT in Focus</p>";
+  document.getElementById('my_msg').innerHTML = "<p style = 'font-family:roboto,garamond,serif;font-size:18px;' >This exam window is NOT in Focus</p>";
   violation++;
 }
 reload();
