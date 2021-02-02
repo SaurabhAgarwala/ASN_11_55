@@ -5,7 +5,7 @@ from users.models import Account
 
 def get_violation(request):
     users = Account.objects.all()[1:]
-    print(users[1].violations.fullscreen)
+    # print(users[1].violations.fullscreen)
     context = {
         'users': users
     }
@@ -19,7 +19,34 @@ def test_view(request):
     return render(request, 'proctor/test_page.html', context)
 
 
-# def report_violation(request):
+def report_violation(request,id,vio):
+    user = Account.objects.get(pk=id)
+    if vio == "multiperson":
+        # print(user.violations.multiperson)
+        user.violations.multiperson += 1
+        # # print('Working**********')
+        # print(user.violations.multiperson)
+    elif vio == "fullscreen":
+        user.violations.fullscreen += 1
+    elif vio == "screenfocus":
+        user.violations.screenfocus += 1
+    elif vio == "audio":
+        user.violations.audio += 1
+    elif vio == "facedir":
+        user.violations.facedir += 1
+    elif vio == "facesim":
+        user.violations.facesim += 1
+    elif vio == "othergadgets":
+        user.violations.othergadgets += 1
+    else:
+        print("Not Found")
+    user.violations.save()
+    return HttpResponse("Successful")
+   
+
+
+
+
 
 
 # def student_exam(request):

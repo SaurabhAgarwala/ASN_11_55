@@ -1053,11 +1053,14 @@ $(window).resize(function(){
       }
       else {
         setTimeout(alert("Please return to the exam in fullscreen mode or you will be disqualified for this exam "), 100);
+        var Http = new XMLHttpRequest();
+        var url = 'http://localhost:8000/proctor/reportviolation/' + {{ user.pk }} + '/fullscreen/';
+        Http.open("GET", url);
+        Http.send();
         $("#go-button").text('Attempt Exam');
         document.getElementById('element').style.display = "none";
       }
     });
-    
     
         Webcam.set({
           width: 320,
@@ -1085,7 +1088,7 @@ $(window).resize(function(){
               })
               .then(function () {
                 str_counter_0++;
-                str_counter_1 = "Image_snapshot_"+str_counter_0;
+                str_counter_1 = "Image_"+ {{ user.pk }} + "_" + str_counter_0;
                 console.log("Image saved successfully");
                 
               })
@@ -1256,6 +1259,10 @@ else
   document.getElementById('my_msg').style.backgroundColor = "#f07814";
   document.getElementById('my_msg').innerHTML = "<p style = 'font-family:roboto,garamond,serif;font-size:18px;' >This exam window is NOT in Focus</p>";
   violation++;
+  var Http = new XMLHttpRequest();
+  var url = 'http://localhost:8000/proctor/reportviolation/' + {{ user.pk }} + '/screenfocus/';
+  Http.open("GET", url);
+  Http.send();
 }
 reload();
   // if(violation > 5){

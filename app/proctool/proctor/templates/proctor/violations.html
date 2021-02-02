@@ -4,12 +4,13 @@
 <html lang="en" dir="ltr">
   <head>
     <style>
-      body{
+    body{
     margin: 0;
     padding: 0;
     font-family: "Roboto", sans-serif;
+    font-size: 20px;
   }
-  
+
   header{
     z-index: 1;
     position: fixed;
@@ -18,6 +19,24 @@
     width: calc(100% - 0%);
     top: 0;
     height: 30px;
+  }
+
+  #button {
+    float: right;
+    margin-right: 80px;
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-top: -45px;
+  }
+
+  #online {
+    margin-top: -5px;
+    text-align: center;
+    font-size: 40px;
+    color: White;
+    font-family: Georgia, serif;;
   }
 
   img {
@@ -47,6 +66,10 @@
     font-family: sans-serif;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid #CCCCCC;
+    border-radius: 6px 6px 6px 6px;
+    -moz-border-radius: 6px 6px 6px 6px;
+    -webkit-border-radius: 6px 6px 6px 6px;
     }
 
 .styled-table thead tr {
@@ -57,7 +80,7 @@
 
 .styled-table th,
 .styled-table td {
-    padding: 12px 15px;
+    padding: 20px 20px;
 }
 
 .styled-table tbody tr {
@@ -186,10 +209,9 @@
   }
   
   .content{
-    width: (100% - 250px);
     margin-top: 60px;
     padding: 20px;
-    margin-left: 250px;
+    margin-left: 60px;
     background: url(background.png) no-repeat;
     background-position: center;
     background-size: cover;
@@ -305,7 +327,100 @@
       display: block;
     }
   }
-    </style>
+            </style>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Violations</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+      </head>
+      <body>
+    
+        <input type="checkbox" id="check">
+        <!--header area start-->
+        <header>
+          <!-- <div class="left_area">
+            <div><img src="Hack logo.png"></div>
+            <div id="online">Online Proctoring System</div>
+            <div><button id= "button"> Sign out </button></div>
+          </div> -->
+        </header>
+        <!--header area end-->
+        <!-- Main content table start -->
+        <div class="content">
+            <div class="card">
+                <h2>All Users Violations Display</h2>
+            </div>
+            <table class="styled-table">
+                <tr>
+                    <th>
+                        Candidate ID
+                    </th>
+                    <th>
+                        Multiple Person Detected
+                    </th>
+                    <th>
+                        Left Full Screen
+                    </th>
+                    <th>
+                        Left Exam Page
+                    </th>
+                    <th>
+                        Human Voice Detected
+                    </th>
+                    <th>
+                        Looking Away from Screen
+                    </th>
+                    <th>
+                        Face Authentication Failed
+                    </th>
+                    <th>
+                        Other gadgets detected
+                    </th>
+                </tr>
+                {% for user in users %}
+                <tr>
+                    <td>
+                        {{ user.pk }}
+                    </td>
+                    <td>
+                        {{ user.violations.multiperson }}
+                    </td>
+                    <td>
+                        {{ user.violations.fullscreen }}
+                    </td>
+                    <td>
+                        {{ user.violations.screenfocus }}
+                    </td>
+                    <td>
+                        {{ user.violations.audio }}
+                    </td>
+                    <td>
+                        {{ user.violations.facedir }}
+                    </td>
+                    <td>
+                        {{ user.violations.facesim }}
+                    </td>
+                    <td>
+                        {{ user.violations.othergadgets }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>        
+          </div>
+        <!-- Main content table part end -->                                               
+        <script type="text/javascript">
+        $(document).ready(function(){
+          $('.nav_btn').click(function(){
+            $('.mobile_nav_items').toggleClass('active');
+          });
+        });
+        </script>
+    
+      </body>
+    </html>
+          
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ProcExam</title>
