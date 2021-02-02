@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
 <title>LogIn</title>
-
+<head></head>
 {% block one %}
+<body>
 <div>
   <h2><u>Log In</u></h2>
   <p>Enter your credentials:</p><br>
@@ -17,6 +18,7 @@
     </form>
     <p>Don't have an account? <a href="{% url 'users:signup' %}">Sign Up Here</p>
   </div>
-</div>            
+</div>    
+</body>        
 {% endblock %}
 

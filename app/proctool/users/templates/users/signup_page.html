@@ -11,7 +11,6 @@
     {% csrf_token %}
     {% include 'bs4_form.html' with form=form %}  
     {% if request.GET.next %}
-        <input type="hidden" name="next" value="{{ request.GET.next }}">
     {% endif %}
     <input type="submit">
     <p>Already have an account? <a href="{% url 'users:login' %}">Log In Here.</p>

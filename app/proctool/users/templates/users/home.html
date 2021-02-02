@@ -18,7 +18,11 @@
 /* BASIC */
 
 html {
-  background-color:  white;
+ background-image: url("https://i.ibb.co/0mkdqnQ/online-proctoring-bg.jpg"); 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
 }
 
 body {
@@ -120,7 +124,7 @@ input[type=button], input[type=submit], input[type=reset]  {
 }
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-  background-color: white;
+  background-color: green;
 }
 
 input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
@@ -152,12 +156,66 @@ input[type=text] {
   border-radius: 5px 5px 5px 5px;
 }
 
+
+
+input[type=password] {
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  width: 85%;
+  border: 2px solid #f6f6f6;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+input[type=email] {
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  width: 85%;
+  border: 2px solid #f6f6f6;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+
 input[type=text]:focus {
   background-color: #fff;
   border-bottom: 2px solid #5fbae9;
 }
 
+input[type=password]:focus {
+  background-color: #fff;
+  border-bottom: 2px solid #5fbae9;
+}
+
 input[type=text]:placeholder {
+  color: #cccccc;
+}
+
+
+
+input[type=password]:placeholder {
   color: #cccccc;
 }
 
@@ -309,26 +367,20 @@ input[type=text]:placeholder {
 #News {background-color: white;}
 
 </style>
-<div class="wrapper fadeInDown">
+<div class="wrapper fadeInDown" style="background-image: url('global_assets/images/online-proctoring-bg.jpg');">
     <div id="formContent">
       <!-- tabs -->
       <button class="tablink" onclick="openPage('Home', this, 'green')" id="defaultOpen">Login</button>
       <button class="tablink" onclick="openPage('News', this, 'green')">Register</button>
 
       <div id="Home" class="tabcontent" >
-        <!-- Icon -->
-      <div class="fadeIn first">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/User_font_awesome.svg/1200px-User_font_awesome.svg.png" id="icon" alt="User Icon" />
-      </div>
       <!-- Login Form -->
       <form action="/users/login/" method="POST">
         {% csrf_token %}
+        <img style="width:200px;height:200px;margin-top:4px;margin-right:0px;margin-bottom:10px" src="https://i.ibb.co/sPS5YM5/Hack-logo.png"/>
         <input type="email" id="id_email" maxlength="60"  autofocus class="fadeIn second" name="email" placeholder="Email ID">
         <input type="password" id="id_password" maxlength="60" class="fadeIn third" name="password" placeholder="Password">
         <input type="submit" class="fadeIn fourth" value="Log In">
-        <!-- <input type="text" id="login" class="fadeIn second" name="login" placeholder="email">
-        <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-        <input type="submit" class="fadeIn fourth" value="Log In"> -->
       </form>
       </div>
 
@@ -337,10 +389,11 @@ input[type=text]:placeholder {
         </div>
         <form action="/users/signup/" method="POST">
           {% csrf_token %}
-          <input type="email" id="id_email" maxlength="60" autofocus class="fadeIn second" name="email" placeholder="Email ID">
-          <input type="text" id="id_username" maxlength="50" class="fadeIn second" name="username" placeholder="Username">
-          <input type="password" id="id_password1" autocomplete="new-password" class="fadeIn third" name="password1" placeholder="Enter Password">
-          <input type="password" id="id_password2" autocomplete="new-password" class="fadeIn fourth" name="password2" placeholder="Confirm Password">
+          <img style="width:200px;height:200px;margin-top:4px;margin-right:0px;margin-bottom:10px" src="https://i.ibb.co/sPS5YM5/Hack-logo.png"/>
+          <input type="email" id="id_email" maxlength="60" autofocus class="fadeIn second" name="email" placeholder="Email ID"><br>
+          <input type="text" id="id_username" maxlength="50" class="fadeIn second" name="username" placeholder="Username"><br>
+          <input type="password" id="id_password1" autocomplete="new-password" class="fadeIn third" name="password1" placeholder="Enter Password"><br>
+          <input type="password" id="id_password2" autocomplete="new-password" class="fadeIn fourth" name="password2" placeholder="Confirm Password"><br>
           <input type="submit" class="fadeIn fifth" value="Register">
         
           <!-- <input type="text" id="login" class="fadeIn second" name="login" placeholder="full name">
