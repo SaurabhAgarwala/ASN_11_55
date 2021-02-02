@@ -637,7 +637,13 @@ footer {
       <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Email: {{ user.email }}</p></text>
         <!-- <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Mobile No.:0123456789</p></text> -->
       
-      
+        <!--for record--> 
+  <audio style="display:none" controls></audio> 
+  <!--'controls' use for add  
+    play, pause, and volume--> 
+  
+  <!--for play the audio--> 
+  <audio style="display:none" id="adioPlay" controls></audio> 
       
       </p>
       </center>
@@ -892,7 +898,7 @@ gtag('config', 'UA-112208093-1');
         var data_uri = "";
         var str_counter_0 = 1;
         var str_counter_1 = "Image_"+ {{ user.pk }} + "_" + str_counter_0;
-        var str_counter_2 = "audio_recording_"+str_counter_0;
+        var str_counter_2 = "Audio_"+ {{ user.pk }} + "_" + str_counter_0;
          const firebaseConfig = {
           apiKey: "AIzaSyBzzsBQLEskwb4ly6egRZgEctsjx90b1ig",
           authDomain: "online-proctoring.firebaseapp.com",
@@ -1098,18 +1104,15 @@ gtag('config', 'UA-112208093-1');
               let mediaRecorder = new MediaRecorder(mediaStreamObj);
               // Pass the audio stream
               mediaRecorder.start();
-              document.getElementById('status').innerHTML = "Recording";
               // Start event
               start.addEventListener("click", function (ev) {
           mediaRecorder.start();
-          document.getElementById('status').innerHTML = "Recording";
                 // console.log(mediaRecorder.state);
               });
     
               // Stop event
               stop.addEventListener("click", function (ev) {
           mediaRecorder.stop();
-          document.getElementById('status').innerHTML = "Stopped";
                 // console.log(mediaRecorder.state);
               });
     
@@ -1145,7 +1148,7 @@ gtag('config', 'UA-112208093-1');
                 [str_counter_2]: base64String,
               })
               .then(function () {
-                str_counter_2 = "audio_recording_"+str_counter_0;
+                str_counter_2 = "Audio_"+ {{ user.pk }} + "_" + str_counter_0;
                 console.log("audio saved successfully");
               })
               .catch(function (error) {
