@@ -341,7 +341,7 @@ def predict(image, prep_img):
     '''
     yolo = YoloV3()
     load_darknet_weights(yolo, 'model/yolov3.weights')
-    class_names = [c.strip() for c in open("model/classes.TXT").readlines()]
+    class_names = [c.strip() for c in open("model/classes.txt").readlines()]
     boxes, scores, classes, nums = yolo(prep_img)
     count=0
     for i in range(nums[0]):

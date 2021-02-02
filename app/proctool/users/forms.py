@@ -6,9 +6,10 @@ from .models import *
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(max_length = 60)
+    thumb = forms.FileField()
     class Meta:
         model = Account
-        fields = ('email', 'username', 'password1', 'password2')
+        fields = ('email', 'username', 'password1', 'password2', 'thumb')
 
 
 class LoginForm(forms.ModelForm):

@@ -49,10 +49,11 @@ class Account(AbstractBaseUser):
     is_superuser = models.BooleanField(default=False)
     is_testadmin = models.BooleanField(default=False)
     violations = models.ForeignKey(Violation,on_delete=models.CASCADE, blank=True, null=True)
+    thumb = models.ImageField(default='default.jpg')
 
     objects = MyAccountManager()
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', ]
+    REQUIRED_FIELDS = ['username', 'thumb', ]
 
     def __str__(self):
         return self.email
