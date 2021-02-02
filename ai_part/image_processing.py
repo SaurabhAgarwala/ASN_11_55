@@ -6,7 +6,7 @@ import os
 import sys
 from glob import glob
 import face_recognition
-# import object_detect as ob
+import object_detect as ob
 
 def drawPolyline(img, shapes, start, end, isClosed= False):
     points= []

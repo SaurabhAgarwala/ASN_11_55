@@ -4,7 +4,7 @@
 <html lang="en" dir="ltr">
   <head>
     <style>
-    body{
+body{
     margin: 0;
     padding: 0;
     font-family: "Roboto", sans-serif;
@@ -327,7 +327,7 @@
       display: block;
     }
   }
-            </style>
+      </style>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Violations</title>
@@ -335,133 +335,16 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
       </head>
-      <body>
-    
-        <input type="checkbox" id="check">
-        <!--header area start-->
-        <header>
-          <!-- <div class="left_area">
-            <div><img src="Hack logo.png"></div>
-            <div id="online">Online Proctoring System</div>
-            <div><button id= "button"> Sign out </button></div>
-          </div> -->
-        </header>
-        <!--header area end-->
-        <!-- Main content table start -->
-        <div class="content">
-            <div class="card">
-                <h2>All Users Violations Display</h2>
-            </div>
-            <table class="styled-table">
-                <tr>
-                    <th>
-                        Candidate ID
-                    </th>
-                    <th>
-                        Multiple Person Detected
-                    </th>
-                    <th>
-                        Left Full Screen
-                    </th>
-                    <th>
-                        Left Exam Page
-                    </th>
-                    <th>
-                        Human Voice Detected
-                    </th>
-                    <th>
-                        Looking Away from Screen
-                    </th>
-                    <th>
-                        Face Authentication Failed
-                    </th>
-                    <th>
-                        Other gadgets detected
-                    </th>
-                </tr>
-                {% for user in users %}
-                <tr>
-                    <td>
-                        {{ user.pk }}
-                    </td>
-                    <td>
-                        {{ user.violations.multiperson }}
-                    </td>
-                    <td>
-                        {{ user.violations.fullscreen }}
-                    </td>
-                    <td>
-                        {{ user.violations.screenfocus }}
-                    </td>
-                    <td>
-                        {{ user.violations.audio }}
-                    </td>
-                    <td>
-                        {{ user.violations.facedir }}
-                    </td>
-                    <td>
-                        {{ user.violations.facesim }}
-                    </td>
-                    <td>
-                        {{ user.violations.othergadgets }}
-                    </td>
-                </tr>
-                {% endfor %}
-            </table>        
-          </div>
-        <!-- Main content table part end -->                                               
-        <script type="text/javascript">
-        $(document).ready(function(){
-          $('.nav_btn').click(function(){
-            $('.mobile_nav_items').toggleClass('active');
-          });
-        });
-        </script>
-    
-      </body>
-    </html>
-          
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProcExam</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
-  </head>
-  <body>
-
-    <input type="checkbox" id="check">
+          <input type="checkbox" id="check">
     <!--header area start-->
     <header>
-      <label for="check">
-        <i class="fas fa-bars" id="sidebar_btn"></i>
-      </label>
       <div class="left_area">
-        <img src="{% static 'Logo.jpeg' %}">
-        <h3> &nbsp Proc Exam &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
-            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Welcome To Online Examination             
-        </h3>
+        <div><img src="{% static 'Logo.jpeg' %}"></div>
+        <div id="online">Online Proctoring System</div>
+        <div><a href="/users/logout/"><button id= "button"> Sign out </button></a></div>
       </div>
     </header>
     <!--header area end-->
-    <!--mobile navigation bar start-->
-    <div class="mobile_nav">
-      <div class="nav_bar">
-        <img src="Images/Logo.jpeg" class="mobile_profile_image" alt="">
-        <i class="fa fa-bars nav_btn"></i>
-      </div>
-      <div class="mobile_nav_items">
-        <a href="#"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
-        <a href="#"><i class="fas fa-sign-out-alt"></i><span>Sign out</span></a>
-      </div>
-    </div>
-    <!--mobile navigation bar end-->
-    <!--sidebar start-->
-    <div class="sidebar">
-    
-      <a href="#"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
-      <a href="#"><i class="fas fa-sign-out-alt"></i><span>Sign out</span></a>
-    </div>
-    <!--sidebar end-->
     <!-- Main content table start -->
     <div class="content">
         <div class="card">
@@ -469,38 +352,62 @@
         </div>
         <table class="styled-table">
             <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Candidate ID</th>
-                    <th>Multiple Person Detected</th>
-                    <th>Left Full Screen</th>
-                    <th>Left Exam Page</th>
-                    <th>Looking Away from Screen</th>
-                    <th>Face Authentication Failed</th>
-                    <th>Other Gadgets Detected</th>
-                </tr>
+              <tr>
+                <th>
+                    Candidate ID
+                </th>
+                <th>
+                    Multiple Person Detected
+                </th>
+                <th>
+                    Left Full Screen
+                </th>
+                <th>
+                    Left Exam Page
+                </th>
+                <th>
+                    Human Voice Detected
+                </th>
+                <th>
+                    Looking Away from Screen
+                </th>
+                <th>
+                    Face Authentication Failed
+                </th>
+                <th>
+                    Other gadgets detected
+                </th>
+            </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>2021-02-31 05:57</td>
-                    <td>103998</td>
-                    <td>1</td>
-                    <td>3</td>
-                    <td>0</td>
-                    <td>3</td>
-                    <td>5</td>
-                    <td>7</td>
-                </tr>
-                <tr>
-                    <td>2021-02-31 05:57</td>
-                    <td>103998</td>
-                    <td>1</td>
-                    <td>3</td>
-                    <td>0</td>
-                    <td>3</td>
-                    <td>5</td>
-                    <td>7</td>
-                </tr>
+              {% for user in users %}
+              <tr>
+                  <td>
+                      {{ user.pk }}
+                  </td>
+                  <td>
+                      {{ user.violations.multiperson }}
+                  </td>
+                  <td>
+                      {{ user.violations.fullscreen }}
+                  </td>
+                  <td>
+                      {{ user.violations.screenfocus }}
+                  </td>
+                  <td>
+                      {{ user.violations.audio }}
+                  </td>
+                  <td>
+                      {{ user.violations.facedir }}
+                  </td>
+                  <td>
+                      {{ user.violations.facesim }}
+                  </td>
+                  <td>
+                      {{ user.violations.othergadgets }}
+                  </td>
+              </tr>
+              {% endfor %}      
                 <!-- and so on... -->
             </tbody>
         </table>

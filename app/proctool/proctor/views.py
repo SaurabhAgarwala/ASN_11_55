@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from users.models import Account
@@ -43,7 +44,14 @@ def report_violation(request,id,vio):
     user.violations.save()
     return HttpResponse("Successful")
    
-
+def submit(request):
+    user = request.user
+    logout(request)
+    print(user.is_active)
+    user.is_active = False
+    print(user.is_active)
+    user.save()
+    return render(request, 'proctor/submit.html')
 
 
 

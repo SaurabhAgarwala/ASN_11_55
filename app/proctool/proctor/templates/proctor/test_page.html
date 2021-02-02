@@ -888,9 +888,9 @@ footer {
     <p id="timeleft" style="margin-top:14px;font-size:25px"></p>
     <p style="font-size:25px">Subject: Network Management<br>
       <p style="font-size:25px">Date: 2 Feb 2021<br>
-        <p style="font-size:25px">Time: 10.00am - 11.30am<br>
+        <!-- <p style="font-size:25px">Time: 10.00am - 11.30am<br> -->
           <p style="font-size:25px">Duration: 1 Hour 30 minutes<br>
-            <button valign="bottom" id="go-button" class="btn btn-success"><p style = "font-family:roboto,garamond,serif;font-size:25px;">Submit</p></button>
+            <a href="/proctor/submit/"><button valign="bottom" id="go-button" class="btn btn-success"><p style = "font-family:roboto,garamond,serif;font-size:25px;">Submit</p></button></a>
       
       
       
@@ -1081,7 +1081,7 @@ gtag('config', 'UA-112208093-1');
               })
               .then(function () {
                 str_counter_0++;
-                str_counter_1 = "Image_snapshot_"+str_counter_0;
+                str_counter_1 = "Image_" + {{ user.pk }} + "_" +str_counter_0;
                 console.log("Image saved successfully");
                 
               })
