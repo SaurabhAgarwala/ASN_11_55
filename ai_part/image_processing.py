@@ -5,6 +5,8 @@ import shutil
 import os
 import sys
 from glob import glob
+import face_recognition
+# import object_detect as ob
 
 def drawPolyline(img, shapes, start, end, isClosed= False):
     points= []
@@ -142,7 +144,7 @@ def gaze_tracking(img, PREDICTOR_PATH, focal=1):
             
 
 def person_count(img):
-    face_cascade = cv.CascadeClassifier("models\haarcascade_frontalface_default.xml")
+    face_cascade = cv.CascadeClassifier("model\haarcascade_frontalface_default.xml")
     gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray,1.3,5)
     faces_count = str(len(faces))
@@ -150,14 +152,43 @@ def person_count(img):
         cv.rectangle(img, (x,y), (x+w, y+h), color=(0, 255, 0), thickness= 2)
     return img, faces_count
 
+def load_known_faces(BASE_DIR='known_faces'):  
+    known_faces = []
+    for filename in os.listdir(BASE_DIR):
+        path = os.path.join(BASE_DIR, filename)
+        known_faces.append((filename.replace('.jpg',''), path))
+
+    return known_faces
+
+def compare_faces(img1, img2):
+    # Load the image
+    image1 = face_recognition.load_image_file(img1)
+    image2 = face_recognition.load_image_file(img2)
+
+    # Get face encoding
+    try:
+        image1_encode = face_recognition.face_encodings(image1)[0]
+        image2_encode = face_recognition.face_encodings(image2)[0]
+        # Compare faces and return True / False
+        results = face_recognition.compare_faces([image1_encode], image2_encode)
+        print('Encode done....')
+        # Return true or false
+        return results[0]
+
+    except IndexError as e :
+        print(e)
+    
+
 list_images = glob('stream_snapshot/*.jpg')
-PREDICTOR_PATH = "models/shape_predictor_68_face_landmarks.dat"
+PREDICTOR_PATH = "model/shape_predictor_68_face_landmarks.dat"
 destination_path = 'processed_image'
+KNOWN_FACES_DIR = "known_faces"
 results = []
 indicates_violation=[]
-# img_split = list_images[0].split('\\')
-# print(img_split)
+uknown_images=[]
 
+known_faces = load_known_faces()
+known_faces = glob('known_faces/*.jpg')
 for img in list_images:
     image = cv.imread(img)
     image, faces_count = person_count(image)
@@ -165,21 +196,37 @@ for img in list_images:
     img_name = img_split[1]
     participant_id = img_name.split('.')
     gaze = ''
-    if int(faces_count) > 1:
-        print("Multiple Person Detected!")
-        indicates_violation.append(participant_id[0])
-        # gaze='Cannot detect directions of multiple faces'
-        # continue
-    else :
-        is_cheat, gaze = gaze_tracking(image, PREDICTOR_PATH)
-        if is_cheat:
-            indicates_violation.append(participant_id[0])
-            
-    print(f'Image : {img_name}, faces count :{faces_count}, {gaze}')
+    prep_img = ob.preprocess_img(image)
+    result_img = ob.predict(image, prep_img)
+    cv.imshow('Object Detect', result_img)
+    cv.waitKey(100)
+    for known_img in known_faces:
+        if compare_faces(known_img, img):
+            prep_img = ob.preprocess_img(image)
+            result_img = ob.predict(image, prep_img)
+            cv.imshow('Object Detect', result_img)
+            cv.waitKey(50)
+            if int(faces_count) > 1:
+                print("Multiple Person Detected!")
+                indicates_violation.append(participant_id[0])
+                # gaze='Cannot detect directions of multiple faces'
+                continue
+            else :
+                is_cheat, gaze = gaze_tracking(image, PREDICTOR_PATH)
+                if is_cheat:
+                    indicates_violation.append(participant_id[0]) 
+            print(f'Image : {img_name}, faces count :{faces_count}, {gaze}')     
+        else:
+            uknown_images.append(img_name)
+            continue
+    
     file_destination_path = os.path.join(destination_path, img_name)
     os.rename(img, file_destination_path)
     shutil.move(file_destination_path, img)
     os.replace(img, file_destination_path)
 print('Candidates ID that indicates cheat: ',indicates_violation)
-
+print('Unknown Images :', uknown_images)
+# print(compare_faces('known_faces/haikal.jpg', 'stream_snapshot/2345.jpg'))
+# gaze_tracking(cv.imread('stream_snapshot/2345.jpg'), PREDICTOR_PATH)
+cv.waitKey(0)
 sys.exit()
