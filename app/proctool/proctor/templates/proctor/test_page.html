@@ -386,8 +386,8 @@ cursor: pointer;
   <div class="container" style="float: left;margin-left:0px;width:100%;height:70px"  >
     <nav style="float: left;margin-left:0px;width:100%">
     <ul style="float: left;margin-left:0px;width:100%">
-      <li style="margin-left:0px"><img style="width:60px;height:60px;margin-top:4px;margin-right:0px" src="https://i.ibb.co/w7Wv8z1/Hack-logo.png"/></li>
-      <li style="margin-left:0px;"><p style="font-family:roboto,garamond,serif;font-size:25px;"><i>ProcExam</i></p></li>
+      <li style="margin-left:0px"><img style="width:60px;height:60px;margin-top:4px;margin-right:0px" src="https://i.ibb.co/sPS5YM5/Hack-logo.png"/></li>
+      <li style="margin-left:0px;"><p style="font-family:roboto,garamond,serif;font-size:25px;"></li>
       <li style="float: right;margin-top:4px;margin-right:0px"><p id="my_msg" style="margin-top:14px;float: right;"></p></li>
       <li style="float: right;margin-top:4px;margin-right:0px;text-align:center;"><b style = "text-align:center;font-family:roboto,garamond,serif;font-size:18px;margin-top:14px;float: right;" id="hack">Hackathon Exam</b></li>
       
@@ -566,13 +566,15 @@ if (distance < 0) {
   + minutes + "m " + seconds + "s ");
   document.getElementById("hack").style.display = "block";
   document.getElementById("allow").style.display = "none";
-  document.getElementById("timeleft").innerHTML = hours + "h "
+  var t = document.getElementById("timeleft").innerHTML = hours + "h "
   + minutes + "m " + seconds + "s ";
+  document.getElementById("timeleft").style.fontSize = "25px";
   console.log(distance);
   if(distance < 600173){
   document.getElementById("timeleft").style.color = "red";
   } else{
   document.getElementById("timeleft").style.color = "blue";
+  document.getElementById("timeleft").innerHTML = "Time Left: "+t;
   }
 }
 }, 1000);
@@ -703,10 +705,10 @@ footer {
       <center><h1>Candidate Details</h1>
       <img style="height:150px;width:150px" src="http://raivens.com/wp-content/uploads/2016/08/Dummy-image.jpg"/>
       <br><br>
-     <p class="feedTitle">Name: Mohamad Nizam bin Mohd Yuseri<br>
-      <p class="feedTitle">Student ID: 263978<br>
-        <p class="feedTitle">Email: nizam.yuseri@gmail.com<br>
-          <p class="feedTitle">Mobile No.:0123456789<br>
+     <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;"><tr><td>Name:</td><td>Mohamad Nizam bin Mohd Yuseri</td></tr></p></text>
+     <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;"><tr><td>Student ID:</td><td> 263978</td></tr></p></text>
+      <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Email: nizam.yuseri@gmail.com</p></text>
+        <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Mobile No.:0123456789</p></text>
       
       
       
@@ -715,10 +717,10 @@ footer {
     </div>
     <div class="mdl-card__title mdl-card--expand featured">
       <center><h1>Exam Details</h1>
-     <p class="feedTitle">Subject: Network Management<br>
-      <p class="feedTitle">Date: 2 Feb 2021<br>
-        <p class="feedTitle">Time: 10.00am - 11.30am<br>
-          <p class="feedTitle">Duration: 1 Hour 30 minutes
+        <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Subject: Network Management</p>
+          <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Date: 2 Feb 2021</p>
+            <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Time: 10.00am - 11.30am</p>
+              <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Duration: 1 Hour 30 minutes</p>
       
       
       
@@ -731,13 +733,20 @@ footer {
     <div class="mdl-card__title mdl-card--expand featured" style="
     justify-content: center;
     align-items: center;">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
       <center><h1>Instructions</h1></center>
+      <br>
+      <br>
     <p class=" feedTitle" style = "font-family:roboto,garamond,serif;font-size:35px;" >
       <ol style = "font-family:roboto,garamond,serif;font-size:30px;">
-      <li><p style = "font-family:roboto,garamond,serif;font-size:30px;">Please stay in the fullscreen while examination is in progress or you will be disqualified</p></li>
-      <li><p style = "font-family:roboto,garamond,serif;font-size:30px;">A working microphone and camera atached to your computer is required in order to answer the exam</p></li>
-      <li><p style = "font-family:roboto,garamond,serif;font-size:30px;">Please always allow access to your microphone and camera while examination is in progress</p></li>
-      <li><p style = "font-family:roboto,garamond,serif;font-size:30px;">Dont switch to other window or you will be disqualified</p></li>
+      <li style="margin-left:100px;margin-right:120px"><text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;" align="justify">Please stay in the fullscreen while examination is in progress or you will be disqualified</p></text></li>
+      <li style="margin-left:100px;margin-right:120px"><text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;" align="justify">A working microphone and camera atached to your computer is required in order to answer the exam</p></text></li>
+      <li style="margin-left:100px;margin-right:120px"><text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;" align="justify">Please always allow access to your microphone and camera while examination is in progress</p></text></li>
+      <li style="margin-left:100px;margin-right:120px"><text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;" align="justify">Dont switch to other window or you will be disqualified</p></li>
       
     </p>
     <div class="mdl-card__supporting-text excerpt">
@@ -755,12 +764,11 @@ footer {
       <div class="container" style="float: left;margin-left:0px;width:100%;height:70px;"  >
         <nav style="float: left;margin-left:0px;width:100%">
         <ul style="float: left;margin-left:0px;width:100%">
-          <li style="float: left;margin-left:0px"><img style="width:60px;height:60px;margin-top:4px;margin-right:0px" src="https://i.ibb.co/w7Wv8z1/Hack-logo.png"/></li>
-          <li style="float: left;margin-left:0px"><p style="font-family:roboto,garamond,serif;font-size:18px;margin-top:20px">Online Proctoring System</p></li>
+          <li style="float: left;margin-left:0px"><img style="width:60px;height:60px;margin-top:4px;margin-right:0px" src="https://i.ibb.co/sPS5YM5/Hack-logo.png"/></li>
+          <li style="float: left;margin-left:0px"></li>
           <li style="float: right;margin-top:4px;margin-right:0px"><p id="my_msg" style="margin-top:14px;float: right;"></p></li>
           <li style="float: right;margin-top:4px;margin-right:0px"><b style = "font-family:roboto,garamond,serif;font-size:18px;margin-top:14px;float: right;" id="hack">Hackathon Exam</b></li>
           <li style="float: right;margin-top:4px;margin-right:0px"><b style = "font-family:roboto,garamond,serif;font-size:18px;margin-top:14px;float: right;" id="hack">Proctoring ongoing</b></li>
-          <li style="float: right;margin-top:4px;margin-right:0px"><p id="timeleft" style="margin-top:14px;float: right;">test</p></li>
           <li>
         </ul>
       </nav>
@@ -774,7 +782,7 @@ footer {
   1. When is the date of 2021 ASEAN Hackathon?
 </p>
 <div class="mdl-card__supporting-text excerpt"><input type="radio" id="Feburary" name="answer1" value="A" >
-  <label style="text-align: left" for="Feburary">February</label><br><input type="radio" id="January" name="answer1" value="B">
+  <label style="text-align: left;" for="Feburary"><p style="font-size:25px" >February</p></label><br><input type="radio" id="January" name="answer1" value="B">
     <label for="January">January</label><br><input type="radio" id="November " name="answer1" value="C">
       <label for="November ">November </label><br><input type="radio" id="December" name="answer1" value="D">
         <label for="December">December</label><br></div>
@@ -862,7 +870,7 @@ footer {
   <span class="more" style="text-align:center;color:#000;position:absolute;bottom:5%;right:5%"><button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" style="background-color: red" data-upgraded=",MaterialButton">
     <i class="fa fa-microphone"></i>
   </button></span>
-<div class="mdl-card__title-text" style="display:block;text-align:center;background: #0f9d58;color: white;">Camera</div>
+<div class="mdl-card__title-text" style="display:block;text-align:center;background: #0f9d58;color: white;">CAMERA</div>
 <center><div class="mdl-card__supporting-text excerpt" style="text-align:center;width:fit-content;height:fit-content; "><div id="my_camera"></div></center>
 </div>
 </div>
@@ -870,11 +878,21 @@ footer {
 
 <div class="mdl-cell mdl-cell--1-offset-desktop mdl-cell--3-col following" style="position:fixed;margin-top:400px"><div class="demo-card-square mdl-card mdl-shadow--2dp">
   <div class="mdl-card__title mdl-card--expand" style="background: none;padding: 0;">
-    <span class="more" style="text-align:center;color:#000;position:absolute;bottom:5%;right:5%"><button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" style="background-color: red" data-upgraded=",MaterialButton">
-      <i class="fa fa-microphone"></i>
+    <span class="more" style="text-align:center;color:#000;position:absolute;bottom:5%;right:5%">
     </button></span>
-  <div class="mdl-card__title-text" style="display:block;text-align:center;background: #0f9d58;color: white;">Exam</div>
-  <center><div class="mdl-card__supporting-text excerpt" style="text-align:center;width:fit-content;height:fit-content; "><div id="my_camera"></div></center>
+  <div class="mdl-card__title-text" style="display:block;text-align:center;background: #0f9d58;color: white;">INFORMATION</div>
+  <center><div class="mdl-card__supporting-text excerpt" style="text-align:center;width:fit-content;height:fit-content; ">
+    <p id="timeleft" style="margin-top:14px;font-size:25px"></p>
+    <p style="font-size:25px">Subject: Network Management<br>
+      <p style="font-size:25px">Date: 2 Feb 2021<br>
+        <p style="font-size:25px">Time: 10.00am - 11.30am<br>
+          <p style="font-size:25px">Duration: 1 Hour 30 minutes<br>
+            <button valign="bottom" id="go-button" class="btn btn-success"><p style = "font-family:roboto,garamond,serif;font-size:25px;">Submit</p></button>
+      
+      
+      
+      </p></center>
+  
   </div>
   </div>
   </div>
