@@ -143,14 +143,14 @@ def gaze_tracking(img, PREDICTOR_PATH, focal=1):
 
             
 
-def person_count(img):
-    face_cascade = cv.CascadeClassifier(cv.data.haarcascades + 'haarcascade_frontalface_default.xml')
-    gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-    faces = face_cascade.detectMultiScale(gray,1.3,5)
-    faces_count = str(len(faces))
-    for (x, y, w, h ) in faces:
-        cv.rectangle(img, (x,y), (x+w, y+h), color=(0, 255, 0), thickness= 2)
-    return img, faces_count
+# def person_count(img):
+#     face_cascade = cv.CascadeClassifier(cv.data.haarcascades + 'haarcascade_frontalface_default.xml')
+#     gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+#     faces = face_cascade.detectMultiScale(gray,1.3,5)
+#     faces_count = str(len(faces))
+#     for (x, y, w, h ) in faces:
+#         cv.rectangle(img, (x,y), (x+w, y+h), color=(0, 255, 0), thickness= 2)
+#     return img, faces_count
 
 def load_known_faces(BASE_DIR='known_faces'):  
     known_faces = []
@@ -191,7 +191,7 @@ known_faces = load_known_faces()
 known_faces = glob('known_faces/*.jpg')
 for img in list_images:
     image = cv.imread(img)
-    image, faces_count = person_count(image)
+    # image, faces_count = person_count(image)
     img_split = img.split("/")
     print(img_split )
     img_name = img_split[1]

@@ -129,3 +129,5 @@ dmypy.json
 .pyre/
 ai_part/model/yolov3.weights
 ai_part/speech_recognition/*/*.wav
+ai_part/face_tracking/model/shape_predictor_68_face_landmarks.dat
+ai_part/object_detect/model/yolov3.weights
