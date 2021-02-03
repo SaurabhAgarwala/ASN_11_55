@@ -369,7 +369,7 @@ input[type=password]:placeholder {
 
 </style>
 <div class="wrapper fadeInDown" style="background-image: url('global_assets/images/online-proctoring-bg.jpg');">
-    <div id="formContent">
+    <div >
       <!-- tabs -->
       <button class="tablink" style="border-radius: 9px 0 0 0; width:50%" onclick="openPage('Home', this, 'green')" id="defaultOpen">Login</button>
       <button class="tablink" style="border-radius: 0 9px 0 0;width:50%" onclick="openPage('News', this, 'green')">Register</button>
@@ -378,21 +378,19 @@ input[type=password]:placeholder {
       <!-- Login Form -->
       <form action="/users/login/" method="POST">
         {% csrf_token %}
-        <img style="width:200px;height:200px;margin-top:4px;margin-right:0px;margin-bottom:10px" src="https://i.ibb.co/sPS5YM5/Hack-logo.png"/>
+        <center><img style="width:200px;height:200px;margin-top:4px;margin-right:0px;margin-bottom:10px" src="https://i.ibb.co/sPS5YM5/Hack-logo.png"/>
         <input type="email" id="id_email" maxlength="60"  autofocus class="fadeIn second" name="email" placeholder="Email ID">
         <input type="password" id="id_password" maxlength="60" class="fadeIn third" name="password" placeholder="Password">
-        <input type="submit" style="margin-top: 50px;" class="fadeIn fourth" value="Log In"><br>
+        <input type="submit" style="margin-top: 50px;" class="fadeIn fourth" value="Log In"><br></center>
         <!--<a class="underlineHover" href="#">Forgot Password</a>-->
       </form>
       </div>
 
       <div id="News" class="tabcontent">
-        <div class="fadeIn first">
-        </div>
         <form action="/users/signup/" method="POST">
           {% csrf_token %}
           
-          <img style="width:400px;height:200px;margin-top:4px;margin-right:0px;margin-bottom:10px" src="https://i.ibb.co/dPNsksr/ProcExam.png"/>
+          <center><img style="width:400px;height:200px;margin-top:4px;margin-right:0px;margin-bottom:10px" src="https://i.ibb.co/dPNsksr/ProcExam.png"/>
           <div align="center">
             <img class="fadeIn second" src="https://i.ibb.co/JC1LKrC/user.png" width="215px" height="220px"  id="img"><br><br>
             <input type="file" accept="image/*" style="display:none;background-color:#4d8cf2;padding:8px;color" onchange="preview(event)" name="pic" id="pic" class="inputfile fadeIn second" required>
@@ -405,7 +403,7 @@ input[type=password]:placeholder {
           <input type="password" id="id_password1" autocomplete="new-password" class="fadeIn third" name="password1" placeholder="Enter Password"><br>
           <input type="password" id="id_password2" autocomplete="new-password" class="fadeIn fourth" name="password2" placeholder="Confirm Password"><br><br>
 
-          <input type="submit" style="margin-top: 50px;" class="fadeIn fifth" value="Register">
+          <input type="submit" style="margin-top: 50px;" class="fadeIn fifth" value="Register"></center>
         
         </form>
       </div>
