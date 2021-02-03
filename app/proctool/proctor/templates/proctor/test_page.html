@@ -15,6 +15,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-messaging.js"></script>
   
   </header>
   
@@ -908,9 +909,29 @@ gtag('config', 'UA-112208093-1');
         };
     
         firebase.initializeApp(firebaseConfig);
+        const messaging = firebase.messaging();
         var firestore = firebase.firestore();
-      const snapshots = firestore.doc("snapshots/nizam");
+                // Add the public key generated from the console here.
+        // Get registration token. Initially this makes a network call, once retrieved
+        // subsequent calls to getToken will return from cache.
+        messaging.getToken({ vapidKey: 'BPTEyXTBEehORwvl4naQeOs-fb7Hw0nYKlkFVXfLP5TxA7Zu7K6Mr-9auH2a1h3LGxbFtk9aci_1cbnktiUAHhc' }).then((currentToken) => {
+          if (currentToken) {
+            // Send the token to your server and update the UI if necessary
+            // ...
+            console.log('token retreived successfully.');
+          } else {
+            // Show permission request UI
+            console.log('No registration token available. Request permission to generate one.');
+            // ...
+          }
+        }).catch((err) => {
+          console.log('An error occurred while retrieving token. ', err);
+          // ...
+        });
+        const snapshots = firestore.doc("snapshots/image");
       
+      
+
       
       function reload(){
         var refresh=1000; // Refresh rate in milli seconds
@@ -1025,7 +1046,7 @@ gtag('config', 'UA-112208093-1');
     
         function retrieveImages() {
           
-          const docRef = firestore.collection("snapshots").doc("nizam");
+          const docRef = firestore.collection("snapshots").doc("image");
           docRef
             .get()
             .then(function (doc) {
@@ -1145,6 +1166,14 @@ gtag('config', 'UA-112208093-1');
                 [str_counter_2]: base64String,
               })
               .then(function () {
+              const messaging = firebase.messaging();
+                messaging.requestPermission()
+              .then(function() {
+                console.log('have permission');
+              })
+                .catch(function(err){
+              console.log('error occured.');
+              })
                 str_counter_2 = "Audio_"+ {{ user.pk }} + "_" + str_counter_0;
                 console.log("audio saved successfully");
               })
