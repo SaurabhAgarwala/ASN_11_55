@@ -1,14 +1,22 @@
-<html lang="en">
+<html >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exam Submitted - ProcExam</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-      .Bg_color {
-    background-color: #55d6aa;
+    div.Bg_color {
+    background-image: url("https://i.ibb.co/TtMK72c/bg.jpg");
     width: 100%;
-    height: 100%;
+    height: 90%;
+    -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
 }
+
+
 
 .text {
     width: 40%;
@@ -19,16 +27,10 @@
     margin-top: -7%;
     border: 2px solid gray;
     border-radius: 10px;
-    box-shadow: 0px 7px 3px #228B22, 0px -7px 3px #228B22;
+    box-shadow: 0px 7px 3px #55d6aa, 0px -7px 3px #55d6aa;
 }
 
-.text p {
-    text-align: left;
-    padding-left: 5%;
-    font-size: 35px;
-    font-family: Arial;
-    margin-top: -5px;
-}
+
 
 #thank {
     font-size: 20px;
@@ -36,29 +38,93 @@
 
 #button {
     position: relative;
-    margin-left: 40px;
     width: 120px;
     height: 40px;
-    background-color: #006400;
+    margin-top:40px;
+    background-color: #55d6aa;
     color: white;
 }
+
+nav {
+  float: right;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 70px;
+  position: relative;
+}
+
+header {
+  background: #55d6aa;
+}
+
+footer {
+
+  width:100%;
+  text-align: center;
+  background-color: #55d6aa;
+  color: black;
+
+}
+
     </style>
 </head>
+  <header >
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <script src="https://kit.fontawesome.com/14e9a22ec9.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  
+  <div class="container" style="float: left;margin-left:0px;width:100%;height:8%;background-color: #55d6aa;">  
+    <nav style="float: left;margin-left:0px;width:100%">
+    <ul style="float: left;margin-left:0px;width:100%">
+      
+   
+      <li style="margin-left:0px"><img style="width:150px;height:70px;margin-top:8px;margin-right:0px" src="https://i.ibb.co/dPNsksr/ProcExam.png"/></li>
+      <li style="margin-left:0px;"><p style="font-family:roboto,garamond,serif;font-size:25px;"></li>
+      <li style="float: right;margin-top:4px;margin-right:0px"><p id="my_msg" style="margin-top:14px;float: right;margin-left: 5px;"></p></li>
+      <li style="float: right;margin-top:4px;margin-right:0px;text-align:center;"></li>
+      <li>
+    </ul>
+  </nav>
+   
+  </div>
+  </header>
 <body>
-    <div class="main">
-        <div class="Bg_color">
-            <div class="text" margin-top="1000">
-                <div class="text1"><p><br><b>You've finished the test. </b> <br> <br> <br> 
-                    <span id="thank">Your responses and score has been saved. </span><br>   <br>         
-                    <span id="thank">Your percentage score is <b>85%</b>.</span> <br><br>
-                    <span id="thank">Thank for appearing in the exam. </span> <br><br>
-                    <span id = "thank">You can now close this window.</span> 
-                </p></div>
-                <!-- <button id="button">View Score</button> -->
+    
+        <center><div class="Bg_color"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <div class="text" >
+                <center><br><b style="font-size:60px">You've finished the test </b> <center>
+                    <center><p id="thank" >Your responses and score has been saved. </p>  </center>    
+                    <center><p id="thank">Your percentage score is <b>85%</b>.</p> </center>
+                    <center><p id="thank">Thank for appearing in the exam. </p> </center>
+                    <center><p id = "thank">You can now close this window.</p></center>
+                </p>
+                <center><button style="border-radius:20px" id="button">View Score</button> </center>
             </div>
 
-        </div>
-    </div>
-
+        </div></center>
+        
 </body>
+<footer style="width: 100%;">
+    <p style = "font-size:18px;">For any queries/issues contact: </p>
+    <p style = "font-size:18px;">(+1) 234567890 (Test Admin)</p>
+    <p style = "font-size:18px;"><a href="test_admin@procexam.com">test_admin@procexam.com</a></p>
+</footer>
 </html>
