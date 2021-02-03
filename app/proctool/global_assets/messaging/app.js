@@ -14,5 +14,5 @@ messaging.requestPermission()
         console.log('Have permission');
     })
     .catch(function(err){
-        console.log(' Error no cloud messaging permission');
+        console.log(' Error no cloud messaging permission: '+err);
     })

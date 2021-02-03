@@ -1,0 +1,25 @@
+{
+  "name": "proctool",
+  "version": "1.0.0",
+  "description": "messaging",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SaurabhAgarwala/AIH2021.git"
+  },
+  "keywords": [
+    "proctool"
+  ],
+  "author": "nizam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SaurabhAgarwala/AIH2021/issues"
+  },
+  "homepage": "https://github.com/SaurabhAgarwala/AIH2021#readme",
+  "dependencies": {
+    "firebase": "^8.2.5"
+  }
+}
