@@ -46,12 +46,12 @@ def report_violation(request,id,vio):
     return HttpResponse("Successful")
    
 def submit(request):
-    user = request.user
-    logout(request)
-    print(user.is_active)
-    user.is_active = False
-    print(user.is_active)
-    user.save()
+    # user = request.user
+    # logout(request)
+    # print(user.is_active)
+    # user.is_active = False
+    # print(user.is_active)
+    # user.save()
     return render(request, 'proctor/submit.html')
 
 
