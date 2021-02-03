@@ -177,7 +177,7 @@ def compare_faces(img1, img2):
 
     except IndexError as e :
         print(e)
-    
+
 
 list_images = glob('stream_snapshot/*.jpg')
 PREDICTOR_PATH = "model/shape_predictor_68_face_landmarks.dat"
