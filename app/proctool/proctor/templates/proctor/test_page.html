@@ -83,11 +83,9 @@ nav a:hover::before {
 	box-sizing: border-box;
 }
 
-#go-button {
-	width: 200px;
-	display: block;
-	margin: 50px auto 0 auto;
-}
+
+
+
 
 /* webkit requires explicit width, height = 100% of sceeen */
 /* webkit also takes margin into account in full screen also - so margin should be removed (otherwise black areas will be seen) */
@@ -656,8 +654,8 @@ footer {
     <div class="mdl-card__supporting-text excerpt">
     </div>
     </div>
-    <center><p style = "font-family:roboto,garamond,serif;font-size:30px;">All the best!</p><i class="fas fa-thumbs-up fa-2x"></i></center>
-    <button valign="bottom" id="go-button" class="btn btn-success" style="margin-bottom:10px"><p style = "font-family:roboto,garamond,serif;font-size:25px;">Attempt exam</p></button>
+    <center><p style = "font-family:roboto,garamond,serif;font-size:30px;">All the best!</p><i class="fas fa-thumbs-up fa-2x"></i><br><br>
+    <button id="go-button" class="btn btn-success"  ><p style = "font-family:roboto,garamond,serif;font-size:25px;">Attempt exam</p></button></center>
   </div>
 
   <button style="display:none" id="btnStart"></button>
@@ -792,7 +790,7 @@ footer {
       <p style="font-size:25px">Date: 2 Feb 2021<br>
         <!-- <p style="font-size:25px">Time: 10.00am - 11.30am<br> -->
           <p style="font-size:25px">Duration: 1 Hour 30 minutes<br>
-            <a href="/proctor/submit/"><button valign="bottom" id="go-button" class="btn btn-success"><p style = "font-family:roboto,garamond,serif;font-size:25px;">Submit</p></button></a>
+            <a style="" href="/proctor/submit/"><button valign="bottom" id="go-button" class="btn btn-success"><p style = "font-family:roboto,garamond,serif;font-size:25px;">Submit</p></button></a>
       </p></center>
   
   </div>
