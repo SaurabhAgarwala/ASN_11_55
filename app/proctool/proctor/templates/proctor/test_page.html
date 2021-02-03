@@ -340,7 +340,7 @@ cursor: pointer;
     <ul style="float: left;margin-left:0px;width:100%">
       
       <a href="/users/logout"><button type="button" class="btn btn-danger" style="height:40px;float: right;margin-top:10px;margin:10px 0px 10px 90px"><p style = "font-family:roboto,garamond,serif;font-size:10px;">Logout</p></button></a>
-      <li style="margin-left:0px"><img style="width:60px;height:60px;margin-top:4px;margin-right:0px" src="https://i.ibb.co/sPS5YM5/Hack-logo.png"/></li>
+      <li style="margin-left:0px"><img style="width:140px;height:70px;margin-top:8px;margin-right:0px" src="https://i.ibb.co/dPNsksr/ProcExam.png"/></li>
       <li style="margin-left:0px;"><p style="font-family:roboto,garamond,serif;font-size:25px;"></li>
       <li style="float: right;margin-top:4px;margin-right:0px"><p id="my_msg" style="margin-top:14px;float: right;margin-left: 5px;"></p></li>
       <li style="float: right;margin-top:4px;margin-right:0px;text-align:center;"><b style = "text-align:center;font-family:roboto,garamond,serif;font-size:18px;margin-top:14px;float: right;" id="hack">Hackathon Exam</b></li>
@@ -600,7 +600,7 @@ footer {
 
     <div class="mdl-card__title mdl-card--expand featured">
       <center><h1>Candidate Details</h1>
-      <img style="height:150px;width:150px" src="http://raivens.com/hackathon examwp-content/uploads/2016/08/Dummy-image.jpg"/>
+      <img style="height:150px;width:150px" src="{{ user.thumb.url }}"/>
       <br><br>
      <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Name: {{ user.username }} </p></text>
      <text style="font-size:30px;font-style:initial"><p style = "font-family:roboto,garamond,serif;font-size:30px;">Student ID: {{ user.pk }}</p></text>
@@ -809,7 +809,7 @@ footer {
 </div>
 </div>
 
-        // show edit div to change profile picture of user when hover on avatar div
+        
   $(".userDiv,.userEditImageDiv").mouseenter(function() {          
     $(".userEditImageDiv").toggle();        
   }).mouseleave(function () {   
